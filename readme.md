@@ -7,10 +7,10 @@
 - **<a href="https://www.scala-lang.org/">Scala</a>**
 - **<a href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>** _(Wikipedia Page)_
 
-####Data Analtyics, Introduction
+####Data Analytics, Introduction
 
-- **<a href="https://cran.r-project.org/</a>**
-- **<a href="https://www.rstudio.com/</a>**
+- **<a href="https://cran.r-project.org/">R</a>**
+- **<a href="https://www.rstudio.com/">RStudio</a>**
 
 ####Dashboards and Data Visualization
 
@@ -24,7 +24,7 @@
 - **<a href="https://hive.apache.org/">Hive</a>**
 - **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
-- 
+
 ####NoSQL Databases
 
 - **<a href="http://cassandra.apache.org/">Cassandra</a>**
