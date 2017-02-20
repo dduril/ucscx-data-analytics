@@ -31,6 +31,7 @@
 
 ####Apache Spark with Scala
 
+- **<a href="https://www.oracle.com/java/index.html">Java</a>**
 - **<a href="https://www.scala-lang.org/">Scala</a>**
 - **<a href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>** _(Wikipedia Page)_
 
@@ -42,8 +43,6 @@
 - **<a href="https://hive.apache.org/">Hive</a>**
 - **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
-
-
 
 Last Updated: 2/19/2017 12:09:52 AM 
 
