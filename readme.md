@@ -1,4 +1,6 @@
-### UCSC Extension - Data Analytics
+### UCSC Extension - Database and Data Analytics Certficate
+
+Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-extension.edu/programs/database-systems/schedule)** offered by the University of Santa Cruz, Silicon Valley. Having already obtained an extensive background working with relational database systems, I chose to focus on the following topics: Big Data, Cloud, IoT, NoSQL and Visualization.
 
 ###Winter 2017
 
@@ -8,6 +10,7 @@
 
 - **<a href="https://cran.r-project.org/">R</a>**
 - **<a href="https://www.rstudio.com/">RStudio</a>**
+- **R Packages**
 
 ####Dashboards and Data Visualization
 
@@ -17,15 +20,15 @@
 
 ####NoSQL Databases
 
-- **<a href="https://www.mongodb.com/">MongoDB</a>**
 - **<a href="https://aws.amazon.com/">Amazon Web Services</a>**
 - **<a href="http://cassandra.apache.org/">Cassandra</a>**
 - **<a href="http://www.datastax.com/">Datastax Enterprise</a>**
+- **<a href="https://www.mongodb.com/">MongoDB</a>**
 - **Programming**
 	- **<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>** _(MDN)_
 	- **<a href="https://nodejs.org/en/">Node.js</a>**
 	- **<a href="https://www.python.org/">Python</a>**
-	- **<a href="https://api.mongodb.com/python/current/">PyMongo</a>**
+	- **<a href="https://api.mongodb.com/python/current/">PyMongo</a>**  
 	
 ###Spring 2017
 
@@ -52,7 +55,7 @@
 - **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
 
-
+####The Internet of Things: Big Data Processing and Analytics
 
 
 
