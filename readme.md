@@ -15,14 +15,12 @@ Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-exte
 #### Dashboards and Data Visualization
 
 - **<a href="https://www.tableau.com/">Tableau</a>**
-	- **<a href="https://www.tableau.com/support/help">Online Help</a>** _(Documents and Support)_
-	- **<a href="https://www.tableau.com/learn/training">Training Videos</a>**
+- **<a href="https://www.tableau.com/support/help">Online Help</a>** _(Documents and Support)_
 
 #### NoSQL Databases
 
-- **<a href="https://aws.amazon.com/">Amazon Web Services</a>**
+- **<a href="https://aws.amazon.com/">AWS</a>**
 - **<a href="http://cassandra.apache.org/">Cassandra</a>**
-- **<a href="http://www.datastax.com/">Datastax Enterprise</a>**
 - **<a href="https://www.mongodb.com/">MongoDB</a>**
 - **Programming**
 	- **<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>** _(MDN)_
@@ -38,7 +36,6 @@ Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-exte
 
 - **<a href="https://www.oracle.com/java/index.html">Java</a>**
 - **<a href="https://www.scala-lang.org/">Scala</a>**
-	- **<a href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>** _(Wikipedia Page)_
 
 #### Hadoop: Distributed Processing of Big Data
 
