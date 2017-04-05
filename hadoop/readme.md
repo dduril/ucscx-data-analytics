@@ -1,4 +1,4 @@
-#### Hadoop: Distributed Processing of Big Data
+### Hadoop: Distributed Processing of Big Data
 
 - **<a href="http://hadoop.apache.org/">Hadoop</a>**
 - **<a href="http://spark.apache.org/">Spark</a>**

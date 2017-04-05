@@ -1,4 +1,4 @@
-#### NoSQL Databases
+### NoSQL Databases
 
 - **<a href="https://aws.amazon.com/">AWS</a>**
 - **<a href="http://cassandra.apache.org/">Cassandra</a>**
