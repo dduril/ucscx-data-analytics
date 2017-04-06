@@ -1,1 +1,7 @@
-body { padding-top: 70px; }
+body { 
+    padding-top: 70px; 
+}
+
+.row {
+    padding-left: 15px;
+}
