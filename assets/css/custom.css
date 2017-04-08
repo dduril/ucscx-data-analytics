@@ -5,3 +5,22 @@ body {
 .row {
     padding-left: 15px;
 }
+
+/* footer */
+.panel-footer {
+  margin-top: 30px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  background-color: #ccc;
+  border-top: 0;
+}
+.panel-footer div.row {
+  margin-bottom: 35px;
+}
+#winter-term, #spring-term, #contact {
+  line-height: 2;
+}
+#winter-term > span, #spring-term > span, #contact > span {
+  font-size: 1.3em;
+}
+/* end footer */
