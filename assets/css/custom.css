@@ -11,7 +11,7 @@ body {
   margin-top: 30px;
   padding-top: 35px;
   padding-bottom: 30px;
-  background-color: #ccc;
+  background-color: #ddd;
   border-top: 0;
 }
 .panel-footer div.row {
@@ -21,6 +21,7 @@ body {
   line-height: 2;
 }
 #winter-term > span, #spring-term > span, #contact > span {
-  font-size: 1.3em;
+  font-size: 1.4em;
+  font-weight: bold;
 }
 /* end footer */
