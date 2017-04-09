@@ -1,5 +1,7 @@
 ### NoSQL Databases
 
+#### Resources
+
 - **<a href="https://aws.amazon.com/">AWS</a>**
 - **<a href="http://cassandra.apache.org/">Cassandra</a>**
 - **<a href="https://www.mongodb.com/">MongoDB</a>**
