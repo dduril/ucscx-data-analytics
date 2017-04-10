@@ -1,9 +1,20 @@
 body { 
-    padding-top: 70px; 
+    padding-top: 50px; 
 }
 
 .row {
     padding-left: 15px;
+}
+
+.navbar {
+    margin-bottom: 0px;    
+}
+
+.jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+	background-color: #369;
+	color: #fff;
 }
 
 /* footer */
