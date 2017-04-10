@@ -13,7 +13,7 @@ body {
 .jumbotron {
     margin-bottom: .5em;
 	padding: 1.8em 1.8em;
-	background-color: #369;
+	background-color: #4484ce;
 	color: #fff;
 }
 
@@ -21,8 +21,8 @@ body {
     background-color: #0e2f44;
 }
 
-.jumbotron-orange {
-    background-color: #ff8c00;
+.jumbotron-dark-slate-gray {
+    background-color: #2f4f4f;
 }
 
 .jumbotron-dark-green {
