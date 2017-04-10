@@ -17,6 +17,30 @@ body {
 	color: #fff;
 }
 
+.jumbotron-dark-blue {
+    background-color: #0e2f44;
+}
+
+.jumbotron-orange {
+    background-color: #ff8c00;
+}
+
+.jumbotron-dark-green {
+    background-color: #006400;
+}
+
+.jumbotron-dark-slate-blue {
+    background-color: #483D8B;
+}
+
+.jumbotron-dark-violet {
+    background-color: #660066;
+}
+
+.jumbotron-red {
+    background-color: #990000;
+}
+
 /* footer */
 .panel-footer {
   margin-top: 30px;
