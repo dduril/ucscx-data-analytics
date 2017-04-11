@@ -6,10 +6,13 @@ body {
     padding-left: 15px;
 }
 
+/* navbar */
 .navbar {
     margin-bottom: 0px;    
 }
+/* end navbar */
 
+/* jumbotron */
 .jumbotron {
     margin-bottom: .5em;
 	padding: 1.8em 1.8em;
@@ -40,6 +43,7 @@ body {
 .jumbotron-red {
     background-color: #990000;
 }
+/* end jumbotron */
 
 /* footer */
 .panel-footer {
