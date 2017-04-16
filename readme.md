@@ -2,7 +2,7 @@
 
 Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-extension.edu/programs/database-systems/schedule)** offered by the University of Santa Cruz, Silicon Valley. Having already obtained an extensive background working with relational database systems, I chose to focus on the following topics: Big Data, Cloud, IoT, NoSQL and Visualization.
 
-**[Data Analysis, Home](https://dduril.github.io/ucscx-data-analytics/**
+**[Data Analysis, Home](https://dduril.github.io/ucscx-data-analytics/)**
 
 ### Winter 2017
 
