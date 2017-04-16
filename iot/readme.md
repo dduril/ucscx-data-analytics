@@ -1,5 +1,9 @@
 ### The Internet of Things: Big Data Processing and Analytics
 
+#### Tools
+
+AWS, Linux
+
 #### Resources
 
 - **<a href="https://aws.amazon.com/">Amazon Web Services</a>**

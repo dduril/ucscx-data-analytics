@@ -1,5 +1,9 @@
 ### Apache Spark with Scala
 
+#### Tools
+
+Spark, Scala, Databricks
+
 #### Resources
 
 - **<a href="http://hadoop.apache.org/">Apache Hadoop</a>**

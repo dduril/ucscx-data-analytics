@@ -1,5 +1,9 @@
 ### NoSQL Databases
 
+#### Tools
+
+AWS, JavaScript, Node.js, Python, Linux, MongoDB, Cassandra
+
 #### Resources
 
 - **<a href="https://aws.amazon.com/">AWS</a>**

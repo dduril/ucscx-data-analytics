@@ -1,5 +1,9 @@
 ### Hadoop: Distributed Processing of Big Data
 
+#### Tools
+
+Hadoop, HDFS, HBase, Java, Eclipse
+
 #### Resources
 
 - **<a href="http://hadoop.apache.org/">Hadoop</a>**
