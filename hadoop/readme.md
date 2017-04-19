@@ -2,7 +2,7 @@
 
 #### Tools
 
-Hadoop, HDFS, HBase, MapReduce, Flume, Sqoop, Kafka, Java, Eclipse
+Hadoop, HDFS, HBase, MapReduce, Flume, Sqoop, Kafka, Java, Eclipse, Cloudera, VirtualBox
 
 #### Resources
 
