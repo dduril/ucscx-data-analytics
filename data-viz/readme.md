@@ -2,7 +2,7 @@
 
 #### Tools
 
-Excel, Tableau
+Tableau, Excel
 
 #### Resources
 

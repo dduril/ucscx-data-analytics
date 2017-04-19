@@ -2,7 +2,7 @@
 
 #### Tools
 
-R, RStudio, R Markdown
+R, RStudio, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, R Markdown, tidyverse)
 
 #### Resources
 

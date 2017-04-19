@@ -2,7 +2,7 @@
 
 #### Tools
 
-AWS, Linux
+AWS, Linux, PySpark
 
 #### Resources
 

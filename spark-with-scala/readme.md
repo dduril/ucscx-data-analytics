@@ -2,7 +2,7 @@
 
 #### Tools
 
-Spark, Scala, Databricks
+Spark, Scala, Databricks (cloud-based big data processing using Spark)
 
 #### Resources
 
