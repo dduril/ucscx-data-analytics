@@ -1,6 +1,6 @@
 ### UCSC Extension - Database and Data Analytics Certficate
 
-Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-extension.edu/programs/database-systems/schedule)** offered by the University of Santa Cruz, Silicon Valley. Having already obtained an extensive background working with relational database systems, I chose to focus on the following topics: Big Data, Cloud, IoT, NoSQL and Visualization.
+Topics from the **[Database and Data Analytics Curriculum](https://www.ucsc-extension.edu/programs/database-systems/schedule)** offered by the University of Santa Cruz, Silicon Valley. Having obtained extensive experience working in systems integration and relational database systems, I chose to focus in the following areas: Big Data, Cloud, Data Engineering, IoT, NoSQL and Data Visualization.
 
 **[Data Analysis, Home](https://dduril.github.io/ucscx-data-analytics/)**
 
