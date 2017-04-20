@@ -2,7 +2,7 @@
 
 #### Tools
 
-AWS, Linux, PySpark
+AWS, Linux Command Line, Spark, PySpark, Python
 
 #### Resources
 

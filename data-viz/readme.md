@@ -2,7 +2,7 @@
 
 #### Tools
 
-Tableau, Excel
+Tableau Desktop, MS Excel, MySQL, File formats (CSV, JSON)
 
 #### Resources
 

@@ -2,7 +2,7 @@
 
 #### Tools
 
-R, RStudio, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, R Markdown, tidyverse)
+R, RStudio, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, R Markdown, tidyverse), MS Excel, Google Sheets, File formats (CSV, JSON)
 
 #### Resources
 

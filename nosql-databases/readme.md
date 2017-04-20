@@ -2,7 +2,7 @@
 
 #### Tools
 
-AWS, JavaScript, Node.js, Python, Linux, MongoDB, Cassandra
+MongoDB, Cassandra, JavaScript, Node.js, Python, AWS, Linux, 
 
 #### Resources
 
