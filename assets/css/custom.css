@@ -51,12 +51,33 @@ body {
 
 
 /* home page */
+.home-page-icon {
+    padding: 6px 12px;    
+}
+
 .home-section-header {
     font-size: 17px; 
     font-weight: bold; 
     margin-top: 15px;     
 }
 /* end home page */
+
+
+/* content pages */
+.page-icon {
+    padding-left: 0px;
+    color: #333;/*#337ab7;*/
+}
+
+.page-section-header {
+    font-size: 30px; 
+    font-weight: normal; 
+    margin-top: 15px;     
+}
+
+
+
+/* end content pages */
 
 
 /* footer */
