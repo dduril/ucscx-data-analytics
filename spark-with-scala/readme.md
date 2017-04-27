@@ -4,7 +4,7 @@
 
 #### Tools
 
-Spark, Scala, AWS, Databricks (cloud-based data processing using Spark)
+Spark, Scala, Databricks (cloud-based data processing using Spark), AWS
 
 #### Resources
 
