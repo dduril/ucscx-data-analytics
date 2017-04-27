@@ -1,5 +1,7 @@
 ### Apache Spark with Scala
 
+**[Apache Spark with Scala](https://dduril.github.io/ucscx-data-analytics/spark-with-scala/)**
+
 #### Tools
 
 Spark, Scala, AWS, Databricks (cloud-based data processing using Spark)

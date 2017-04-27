@@ -1,5 +1,7 @@
 ### Hadoop: Distributed Processing of Big Data
 
+**[Hadoop: Distributed Processing of Big Data](https://dduril.github.io/ucscx-data-analytics/hadoop/)**
+
 #### Tools
 
 Hadoop, HDFS, HBase, MapReduce, Flume, Sqoop, Kafka, Oracle VirtualBox, Cloudera Platform, Java, Eclipse
