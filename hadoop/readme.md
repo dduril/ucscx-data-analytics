@@ -4,10 +4,17 @@
 
 #### Tools
 
-Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle VirtualBox, Cloudera Platform, Java, Eclipse, Maven
+Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle VirtualBox, Cloudera Platform, Eclipse, Java, Maven
 
 #### Resources
 
+**Java**
+
+- **<a href="https://www.eclipse.org">Eclipse</a>**
+- **<a href="http://www.oracle.com/technetwork/java/index.html">Java</a>**
+- **<a href="https://maven.apache.org/">Maven</a>**
+
+**Hadoop**
 - **<a href="http://hadoop.apache.org/">Hadoop</a>**
 - **<a href="http://spark.apache.org/">Spark</a>**
 - **<a href="https://pig.apache.org/">Pig</a>**
