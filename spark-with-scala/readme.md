@@ -4,7 +4,7 @@
 
 #### Tools
 
-Spark, Scala, Databricks (cloud-based data processing using Spark), AWS
+Spark, Databricks (cloud-based data processing using Spark), Scala, Scala IDE for Eclipse, SBT
 
 #### Resources
 

@@ -4,7 +4,7 @@
 
 #### Tools
 
-AWS, Linux Command Line, Spark, PySpark, Python
+Spark, PySpark, Kafka, Zookeeper, Python, AWS, SSH, Linux
 
 #### Resources
 
