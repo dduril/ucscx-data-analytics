@@ -22,7 +22,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body ng-app="">
+    <div ng-include="'../assets/templates/dv-header.html'"></div>
+    
     <header>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -82,7 +84,8 @@
         </div>
     </div> 
       
-      
+    <div ng-include="'../assets/templates/dv-footer.html'"></div>
+       
     <footer class="footer panel-footer">
         <div class="container">
             <div class="row">
