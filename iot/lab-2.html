@@ -23,7 +23,9 @@
     <![endif]-->
 </head>
 <body ng-app="">
+   
     <div ng-include="'../assets/templates/iot-header.html'"></div>
+    
     <div class="container">
         <div class="row">
            
@@ -32,28 +34,42 @@
                 <p class="page-section-header">The Internet of Things: Big Data Processing and Analytics</p></div>
             </div>
             
-            <p>This course covers the Internet of Things (IoT), Industrial Internet of Things (IIoT), and Machine-to-Machine (M2M) data processing and analytics by using Amazon Web Services (AWS) and simulated data from devices, sensors, appliances and other data-collecting technology. Big data - Apache Spark, Kafka, Zookeeper combined with popular programming languages - Python and PySpark to process data in near real-time and extract meaning and insight.</p>
-            <br>
             
-            <p><strong>Projects</strong></p>
-            <ul>
-                <li><a href="lab-1.html">Lab 1 - AWS Account Setup</a></li>
-                <li><a href="#">Lab 2 - Spark Installation</a></li>
-                <li><a href="#">Lab 3 - Using Encryption with IoT</a></li>
-                <li><a href="#">Lab 4 - MapReduce</a></li>
-                <li><a href="#">Lab 5 - Kafka Messaging</a></li>
-                <li><a href="#">Lab 6 - IoT Simulator</a></li>
-                <li><a href="#">Lab 7 - IoT Data Processing</a></li>
-                <li><a href="#">Lab 8 - Final Project - Putting it all Together</a></li>
-            </ul>
-            <br>
             
-            <p><strong>References</strong></p>
-            <ul>
-                <li>Learning Python<i>(O'Reilly)</i></li>
-            </ul>
+            <div class="row">
+                <div class="col-sm-3"><br>
+                    <div class="list-group">
+                    <a href="lab-1.html" class="list-group-item iot-list-group-item">
+                    Lab 1
+                    </a>
+                    <a href="lab-2.html" class="list-group-item iot-list-group-item active">Lab 2</a>
+                    <a href="lab-3.html" class="list-group-item iot-list-group-item">Lab 3</a>
+                    <a href="lab-4.html" class="list-group-item iot-list-group-item">Lab 4</a>
+                    <a href="lab-5.html" class="list-group-item iot-list-group-item">Lab 5</a>
+                    <a href="lab-6.html" class="list-group-item iot-list-group-item">Lab 6</a>
+                    <a href="lab-7.html" class="list-group-item iot-list-group-item">Lab 7</a>
+                    <a href="lab-8.html" class="list-group-item iot-list-group-item">Lab 8</a>
+                    </div>
+                </div>
+                
+                <div class="col-sm-9">
+                    <h3>Lab 2 - Spark Installation</h3>  
+                    <pre>
+#!/usr/bin/python
+
+import sys
+import datetime
+import random
+import string
+                    </pre>
+            
+                    <div class="console">$ ls -lta
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>            
+    </div>
+            
     <div ng-include="'../assets/templates/iot-footer.html'"></div>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

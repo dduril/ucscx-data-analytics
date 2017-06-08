@@ -76,9 +76,29 @@ body {
 }
 
 
-
 /* end content pages */
 
+
+/*  */
+.iot-list-group-item.active, .iot-list-group-item.active:focus, .iot-list-group-item.active:hover {
+    background-color: #483D8B;
+    border-color: #483D8B;
+}
+
+/*  */
+/* console */
+.console {
+    display: block;
+    margin: 10px 10px 35px 0;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    font-family: "Courier New", sans-serif;
+    width: 100%;
+}
+/* end console */
 
 /* footer */
 .panel-footer {
