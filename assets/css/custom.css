@@ -79,13 +79,19 @@ body {
 /* end content pages */
 
 
-/*  */
+/* list-group-item */
 .iot-list-group-item.active, .iot-list-group-item.active:focus, .iot-list-group-item.active:hover {
     background-color: #483D8B;
     border-color: #483D8B;
 }
 
-/*  */
+.nosql-list-group-item.active, .nosql-list-group-item.active:focus, .nosql-list-group-item.active:hover {
+    background-color: #660066;
+    border-color: #660066;
+}
+
+/* end list-group-item */
+
 /* console */
 .console {
     display: block;
