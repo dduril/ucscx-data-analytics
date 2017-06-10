@@ -51,12 +51,104 @@
                 <div class="col-sm-9">
                     <h3>Lab 2 - Spark Installation</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <p>Having signed-up and configured an AWS instance, the next lab focuses on the installation of Spark.</p><br>
+                    
+                    <h4 class="h4-sub-header">Install Java</h4>
+                    <pre># Install java</pre>
+                    <div class="console">
+                    $ sudo yum update<br>
+                    $ sudo yum install wget<br>
+                    $ sudo yum install java-1.8.0-openjdk-devel<br>
+                    $ sudo ln -s /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.* /usr/lib/jvm/jdk<br>
                     </div>
                     
+                    <pre># Use vi to edit these lines into your ~/.bashrc:</pre>
+                    <div class="console">
+                    $ vi ~/.bashrc<br><br>
+
+                    #-----<br>
+                    export JAVA_HOME=/usr/lib/jvm/jdk<br>
+                    #-----<br><br>
+
+                    $ source ~/.bashrc 
+                    </div>
+                    
+                    <pre># Download Spark to the ec2-user's home directory</pre>
+                    <div class="console">
+                    $ cd ~<br>
+                    $ wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.0-bin-hadoop2.7.tgz
+                    </div>
+                    
+                    <pre># Unpack Spark in the /opt directory</pre>
+                    <div class="console">
+                    $ sudo tar zxvf spark-2.0.0-bin-hadoop2.7.tgz -C /opt
+                    </div>
+                    
+                    <pre># Create a symbolic link to make it easier to access</pre>
+                    <div class="console">
+                    $ sudo ln -fs spark-2.0.0-bin-hadoop2.7 /opt/spark
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Set the SPARK_HOME environment variable so it takes effect when you login to 
+the EC2 instance</h4>
+                    <pre># Insert these lines into your ~/.bashrc:</pre>
+                    <div class="console">
+                    $ vi ~/.bashrc<br><br>
+
+                    #-----<br>
+                    export SPARK_HOME=/opt/spark<br>
+                    PATH=$PATH:$SPARK_HOME/bin<br>
+                    export PATH<br>
+                    #-----<br><br>
+
+                    $ source ~/.bashrc 
+                    </div>
+
+                    <h4 class="h4-sub-header">Reload the environment variables (or logout and login again) so they take effect.</h4>
+                    <pre># Reload environment variables</pre>
+                    <div class="console">
+                    $ source ~/.bash_profile  
+                    </div>
+                    
+                    <pre># Confirm that spark-submit is now in the PATH.</pre>
+                    <div class="console">
+                    $ spark-submit --version
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Create a Log4J configuration file from the provided template</h4>
+                    <div class="console">
+                    $ sudo cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties<br>
+                    $ sudo vi $SPARK_HOME/conf/log4j.properties
+                    </div>
+                    <pre># (on line 19 of the file, change the log level from INFO to ERROR)
+
+# (Note that this will suppress se of the output needed in the tutorials)
+
+# log4j.rootCategory=ERROR, console
+
+# Save the file and exit the text editor.</pre>
+                    
+                    <h4 class="h4-sub-header">Testing with the Interactive Shells</h4>
+                    
+                    <pre># See how many lines are in the README.md file via Linux, to verify shell answers.</pre>
+                    <div class="console">
+                    $ wc -l $SPARK_HOME/README.md
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Start the interactive shell</h4>
+                    <pre># Start the Python shell
+
+cd $SPARK_HOME
+
+$SPARK_HOME/bin/pyspark
+
+>>> # Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
+>>> textFile = spark.sparkContext.textFile("README.md")
+>>> # Output the line count (it should match the wc output from the command line)
+>>> textFile.count()
+>>> # Quit the shell
+>>> quit()</pre>
+               
                 </div>
             </div>
         </div>
