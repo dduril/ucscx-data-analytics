@@ -51,11 +51,67 @@
                 <div class="col-sm-9">
                     <h3>Lab 4 - MapReduce</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <h4 class="h4-sub-header">SSH into AWS instance and launch pyspark</h4>
+                    <div class="console">
+                    $ ls -a<br>
+                    $ pyspark
                     </div>
+                    
+                    <h4 class="h4-sub-header">Code samples for exploring MapReduce</h4>
+                    
+                    <br>
+                    <p><strong>First, do some setup and load the text file.</strong></p>
+                    <br>
+                    <pre>>>> from __future__ import print_function
+>>> import sys
+>>> from operator import add
+>>>
+>>> textFile = spark.sparkContext.textFile("lab3-iot-gendata.txt") 
+>>>
+</pre>
+
+                    <br>
+                    <p><strong>Output the filtered histogram  - comparing numbers as strings</strong></p>
+                    <br>
+                    <pre>>>> counts = textFile.flatMap(lambda x: x.split(' ')) \
+...     .filter(lambda x: ((x &gt;= "75") and (x &lt;= "95"))) \
+...     .map(lambda x: (x, 1)) \
+...     .reduceByKey(add)
+>>> output = counts.collect()
+>>> for (word, count) in output:
+...     print("%s: %i" % (word, count))
+</pre>
+                   
+                    <br>
+                    <p><strong>Try using Python int() instead of comparing against strings</strong></p>
+                    <br>
+                    <pre>>>> import sys
+>>> from operator import add
+>>>
+>>> textFile = spark.sparkContext.textFile("lab3-iot-gendata.txt") 
+>>> 
+>>> counts = textFile.flatMap(lambda x: x.split()) \
+...     .map(lambda x: int(x)) \
+...     .filter(lambda x: x &gt;= 75 and x &lt;= 95) \
+...     .map(lambda x: (x, 1)) \
+...     .reduceByKey(add)
+>>> output = counts.collect()
+>>> for (word, count) in output:
+...     print("%i: %i" % (word, count))
+</pre>
+                   
+                    <br>
+                    <p><strong>Try using Pyspark sortByKey()</strong></p>
+                    <br>
+                    <pre>>>> counts = textFile.flatMap(lambda x: x.split()) \
+...     .map(lambda x: int(x)) \
+...     .map(lambda x: (x,1)) \
+...     .sortByKey()
+>>> counts.foreach(print)</pre>
+                   
+                                      <p>
+                   <a href="data/lab3-iot-gendata.txt" target="_blank">lab3-iot-gendata.txt</a>
+                   </p>
                     
                 </div>
             </div>
