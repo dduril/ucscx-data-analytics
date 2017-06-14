@@ -57,12 +57,56 @@
                 <div class="col-sm-9">
                     <h3>Lab 5 - Kafka Messaging</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <h4 class="h4-sub-header">Setup</h4>
+                    <p>Open a new PuTTY session or shell, then ssh to the AWS EC2 instance. After establishing the connection, download and install Kafka.</p>
+                    <div class="console">$ wget http://mirrors.advancedhosters.com/apache/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz<br>
+$ tar -xzf kafka_2.11-0.10.1.0.tgz<br>
+$ cd kafka_2.11-0.10.1.0
                     </div>
                     
+                    <p>Edit the zookeeper config file:</p>
+                    <div class="console">$ vi config/zookeeper.properties<br><br>
+# Add these lines the end of the file, then save it:
+tickTime=2000
+dataDir=/tmp/zookeeper</div>
+                    
+                    <p>Start the Zookeeper server first. (Kafka includes a packaged script for creating a basic single-node Zookeeper instance.)</p>
+                    <div class="console">$ export KAFKA_HEAP_OPTS="-Xmx512M -Xms256M"<br>
+bin/zookeeper-server-start.sh config/zookeeper.properties &amp; </div>
+                    
+                    <p>Start the Kafka server.</p>
+                    <div class="console">$ export KAFKA_HEAP_OPTS="-Xmx512M -Xms256M"<br>
+bin/kafka-server-start.sh config/server.properties &amp;</div>
+                   
+                    <p>Open a new SSH session to the AWS EC2 instance, <code>cd</code> to the kafka directory, create a topic - iotmsgs, and then list the topics.</p>
+                    <div class="console">$ cd kafka_2.11-0.10.1.0<br>
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic iotmsgs<br>
+$ bin/kafka-topics.sh --list --zookeeper localhost:2181</div>
+
+                    <p>Now that the Kafka topic has been created, send some messages:</p>
+                    <div class="console">$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic iotmsgs<br>
+{temperature: 72}<br>
+{temperature: 75}<br>
+&lt;Ctrl+C&gt;</div>
+                    
+                    <p>Send some more messages:</p>
+                    <div class="console">$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic iotmsgs<br>
+Hello World!<br>
+IoT is cool!<br>
+&lt;Ctrl+C&gt;</div>
+                    
+                    <p>Kafka also has a command line consumer to dump out messages to standard output:</p>
+                    <div class="console">$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic iotmsgs --from-beginning<br>
+{temperature: 72}<br>
+{temperature: 75}<br>
+Hello World!<br>
+IoT is cool!<br>
+Processed a total of 4 messages</div>
+                    
+                    <p>Having completed this lab and our exploration of Kafka and messaging, stop the servers in reverse order of starting them - Kafka, then Zookeeper.</p>
+                    <div class="console">$ bin/kafka-server-stop.sh<br>
+$ bin/zookeeper-server-stop.sh</div>
+                                                                                                            
                 </div>
             </div>
         </div>
