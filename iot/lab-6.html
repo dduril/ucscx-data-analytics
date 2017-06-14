@@ -57,30 +57,110 @@
                 <div class="col-sm-9">
                     <h3>Lab 6 - IoT Simulator</h3>  
                     
+                    <p>Open a new SSH to the AWS EC2 instance.</p> 
+                    <p>Download the IoT Simulator code:</p>
+                    <div class="console">$ wget https://raw.githubusercontent.com/hinkmond/iot-big-data-processing-and-analytics/master/iotsimulator.py</div>
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
-                    </div>
+                    <p>Change file properties and run simulator for 10 messages.</p>
+                    <div class="console">$ chmod 755 iotsimulator.py<br>
+$ iotsimulator.py 10</div>
+                   
+                    <p>After verifying that simulator will run for 10 messages, try 10,000 messages.</p>
+                    <div class="console">$ iotsimulator.py 10000</div>
                     
                     <h4 class="h4-sub-header">Iotsimulator.py Script</h4>
+                    <pre>#!/usr/bin/python
+
+import sys
+import datetime
+import random
+import string
+
+# Set number of simulated messages to generate
+if len(sys.argv) > 1:
+  numMsgs = int(sys.argv[1])
+else:
+  numMsgs = 1
+
+index = 1
+
+# Fixed values
+guidStr = "0-ZZZ12345678"
+sourceStr = "D-MTQ24683579"
+destinationStr = "0-AAA12345678"
+formatStr = "urn:weather-station:sensor-cap:temp-humidity"
+
+# Choice for random letter (remove 'eye' and 'oh')
+letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
+
+iotmsg_header = """\
+{
+  "index": %d,
+  "guid": "%s",
+  "source": "%s",
+  "destination": "%s", """
+
+iotmsg_eventTime = """\
+  "eventTime": "%sZ", """
+
+iotmsg_payload ="""\
+  "payload": {
+     "format": "%s", """
+
+iotmsg_data ="""\
+     "data": {
+       "temperature": %.2f,
+       "humidity": %.2f
+     }
+   }
+}"""
+
+##### Generate JSON output:
+
+print "["
+
+dataElementDelimiter = ","
+for counter in range(0, numMsgs):
+
+  randInt = random.randrange(0, 9)
+  randLetter = random.choice(letters)
+  print iotmsg_header % (index, guidStr+str(randInt)+randLetter, sourceStr+str(randInt)+randLetter, destinationStr)
+
+  today = datetime.datetime.today()
+  datestr = today.isoformat()
+  print iotmsg_eventTime % (datestr)
+
+  print iotmsg_payload % (formatStr)
+
+  # Generate a random floating point number
+  
+  randTemp = random.uniform(0.0, 40.0) + 60.0
+  randHumidity = random.uniform(20.0, 50.0) + 20.0
+  if counter == numMsgs - 1:
+    dataElementDelimiter = ""
+  print iotmsg_data % (randTemp, randHumidity) + dataElementDelimiter
+  
+  index = index + 1
+
+print "]"</pre>
                     
                     <h4 class="h4-sub-header">Sample JSON Output</h4>
+                    <pre>{
+  "index": 1,
+  "guid": "0-ZZZ123456780A",
+  "source": "D-MTQ246835790A",
+  "destination": "0-AAA12345678",
+  "eventTime": "2017-05-18T14:40:03.445722Z",
+  "payload": {
+     "format": "urn:weather-station:sensor-cap:temp-humidity",
+     "data": {
+       "temperature": 82.57,
+       "humidity": 50.33
+     }
+   }
+}</pre>
+                    
 <!--
-Step 1: Open a new PuTTY session or ssh to your AWS EC2 instance
-
-
-Step 2: Download the IoT Simulator code:
-
-wget https://raw.githubusercontent.com/hinkmond/iot-big-data-processing-and-analytics/master/iotsimulator.py
-
-
-Step 3: Run the simulator:
-
-chmod 755 iotsimulator.py
-./iotsimulator.py 10 
-
 
 Step 4: Edit the Python script to match your Final Project.
 
