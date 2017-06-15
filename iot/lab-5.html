@@ -65,10 +65,10 @@ $ cd kafka_2.11-0.10.1.0
                     </div>
                     
                     <p>Edit the zookeeper config file:</p>
-                    <div class="console">$ vi config/zookeeper.properties<br><br>
-# Add these lines the end of the file, then save it:
+                    <div class="console">$ vi config/zookeeper.properties</div>
+                    <pre># Add these lines the end of the file, then save it:
 tickTime=2000
-dataDir=/tmp/zookeeper</div>
+dataDir=/tmp/zookeeper</pre>
                     
                     <p>Start the Zookeeper server first. (Kafka includes a packaged script for creating a basic single-node Zookeeper instance.)</p>
                     <div class="console">$ export KAFKA_HEAP_OPTS="-Xmx512M -Xms256M"<br>

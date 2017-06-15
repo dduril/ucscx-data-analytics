@@ -58,33 +58,33 @@
                     <h3>Lab 3 - Using Encryption with IoT</h3>  
                     
                     <h4 class="h4-sub-header">Use openssl to generate a public key</h4> 
-                    <pre>$ openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
-$ openssl rsa -pubout -in private_key.pem -out public_key.pem
+                    <div class="console">$ openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048<br>
+$ openssl rsa -pubout -in private_key.pem -out public_key.pem<br>
 $ cat public_key.pem
-</pre>
+</div>
 
                     <h4 class="h4-sub-header">Use openssl to encrypt data</h4>
-                    <pre>$ echo "Hello IoT" > iot-data.txt
-$ openssl aes-256-cbc -a -salt -in iot-data.txt -out iot-data.txt.enc
-Password: abc123
+                    <div class="console">$ echo "Hello IoT" > iot-data.txt<br>
+$ openssl aes-256-cbc -a -salt -in iot-data.txt -out iot-data.txt.enc<br>
+Password: abc123<br>
 $ cat iot-data.txt.enc
-</pre>
+</div>
 
                     <h4 class="h4-sub-header">Use openssl to decrypt data</h4>
-                    <pre>$ openssl aes-256-cbc -d -a -salt -in iot-data.txt.enc -pass pass:abc123
-$ echo "abc123" > passwdfile
+                    <div class="console">$ openssl aes-256-cbc -d -a -salt -in iot-data.txt.enc -pass pass:abc123<br>
+$ echo "abc123" > passwdfile<br>
 $ openssl aes-256-cbc -d -a -salt -in iot-data.txt.enc -pass file:./passwdfile
-</pre>
+</div>
 
                     <h4 class="h4-sub-header">Download generated IoT simulated data "lab3-iot-gendata.txt.enc" and decrypt it</h4>
-                    <pre>$ wget https://raw.githubusercontent.com/hinkmond/iot-big-data-processing-and-analytics/master/lab3-iot-gendata.txt.enc
-$ echo "abc123" > passwdfile
-$ openssl aes-256-cbc -d -a -salt -in lab3-iot-gendata.txt.enc -pass file:./passwdfile > lab3-iot-gendata.txt
+                    <div class="console">$ wget https://raw.githubusercontent.com/hinkmond/iot-big-data-processing-and-analytics/master/lab3-iot-gendata.txt.enc<br>
+$ echo "abc123" > passwdfile<br>
+$ openssl aes-256-cbc -d -a -salt -in lab3-iot-gendata.txt.enc -pass file:./passwdfile > lab3-iot-gendata.txt<br>
 $ cat lab3-iot-gendata.txt
-</pre>
+</div>
 
                     <h4 class="h4-sub-header">Use Spark pyspark to count number of elements ("Word Count") in above decrypted file</h4>
-                     <pre># Start the Python shell
+                    <pre># Start the Python shell
 cd $SPARK_HOME
 $SPARK_HOME/bin/pyspark
 >>> textFile = spark.sparkContext.textFile("lab3-iot-gendata.txt")
