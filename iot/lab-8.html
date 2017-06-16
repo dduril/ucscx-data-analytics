@@ -107,26 +107,319 @@
                      --broker-list localhost:9092 --topic iotmsgs  
                     </div>
                     
-                    <p>Checking the second SSH window - the messages appear in the output stream.</p>
-                    <pre>
-                        
-                    </pre>
+                    <p>Checking the second SSH window - the messages appear in the output stream. (Excerpt)</p>
+                    <pre>Timezones
+
++--------+---------------+
+|timezone|count(timezone)|
++--------+---------------+
+| central|             25|
+| eastern|             29|
+|mountain|             22|
+| pacific|             24|
++--------+---------------+
+
+Sort Example
+
++--------+
+|forecast|
++--------+
+|   98.65|
+|   97.53|
+|   97.21|
+|   97.15|
+|   96.13|
+|   95.12|
+|   95.11|
+|   94.73|
+|    92.9|
+|   88.31|
+|   86.31|
+|   85.97|
+|   84.55|
+|    84.3|
+|   83.98|
+|   83.81|
+|   83.77|
+|   83.26|
+|   83.25|
+|   83.12|
++--------+
+only showing top 20 rows</pre>
                     
                     <h4 class="h4-sub-header">JSON Schema</h4>
-                    <pre>
-                        
-                    </pre>
+                    <pre>{
+  "index": 1,
+  "guid": "08-SMRT-SPRNKLR-1234-56788P",
+  "timezone": "pacific",
+  "ownerid": "oid-24855128",
+  "location": "home8P",
+  "zipcode": "95259",
+  "eventTime": "2017-06-05T12:46:28.012709Z",
+  "payload": {
+     "format": "urn:smart-sprinkler:sensor-device:temp--humidity--soil-moist--rain-forecast",
+     "data": {
+       "forecast": 6.24,
+       "soilMoisture": 48.64,
+       "temperature": 93.94,
+       "humidity": 64.61,
+       "wind": 25.31,
+       "rain": "False",
+       "rainDescription": "Forecast does not call for precipitation.",
+       "saturation": "False",
+       "saturationDescription": "Soil moisture levels within normal range.",
+       "status": "True",
+       "statusDescription": "System status normal."
+     }
+   }
+}</pre>
                     
                     <h4 class="h4-sub-header">iotsimulator.py</h4>
-                    <pre>
-                        
-                    </pre>
+                    <pre>#!/usr/bin/python
+
+import sys
+import datetime
+import random
+import string
+
+# Set number of simulated messages to generate
+if len(sys.argv) > 1:
+  numMsgs = int(sys.argv[1])
+else:
+  numMsgs = 1
+
+# Counter for tracking messages
+index = 1
+
+# Fixed values
+guidStr = "08-SMRT-SPRNKLR-1234-5678"
+timezoneStr = ""
+ownerIdStr = "oid-2485"
+locationStr = "home"
+zipcodeStr = "95"
+formatStr = "urn:smart-sprinkler:sensor-device:temp--humidity--soil-moist--rain-forecast"
+
+# Choice for random letter (remove 'eye' and 'oh')
+letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
+timezoneArray = ['pacific', 'mountain', 'central', 'eastern']
+
+iotmsg_header = """\
+{
+  "index": %d,
+  "guid": "%s",
+  "timezone": "%s",
+  "ownerid": "%s",
+  "location": "%s",
+  "zipcode": "%s", """
+
+iotmsg_eventTime = """\
+  "eventTime": "%sZ", """
+
+iotmsg_payload ="""\
+  "payload": {
+     "format": "%s", """
+
+iotmsg_data ="""\
+     "data": {
+       "forecast": %.2f,
+       "soilMoisture": %.2f,
+       "temperature": %.2f,
+       "humidity": %.2f,
+       "wind": %.2f,
+       "rain": "%s",
+       "rainDescription": "%s",
+       "saturation": "%s",
+       "saturationDescription": "%s",
+       "status": "%s",
+       "statusDescription": "%s"
+     }
+   }
+}"""
+
+
+##### Generate JSON output:
+
+print "["
+
+dataElementDelimiter = ","
+for counter in range(0, numMsgs):
+
+  randInt = random.randrange(0, 9)
+  randIntMd = random.randrange(100,999)
+  randIntLg = random.randrange(1000,9999)
+  randLetter = random.choice(letters)
+  print iotmsg_header % (index, guidStr+str(randInt)+randLetter, timezoneStr, ownerIdStr+str(randIntLg), locationStr+str(randInt)+randLetter, zipcodeStr+str(randIntMd))
+
+  today = datetime.datetime.today()
+  datestr = today.isoformat()
+  print iotmsg_eventTime % (datestr)
+
+  print iotmsg_payload % (formatStr)
+
+  # Generate a random floating point number
+  randForecast = random.uniform(0.0, 100.0)
+  randSoilMoisture = random.uniform(0.0, 200.0)
+  randTemp = random.uniform(0.0, 40.0) + 60.0
+  randHumidity = random.uniform(20.0, 50.0) + 20.0
+  randWind = random.uniform(7.0, 22.0) + 5.0
+
+  # Conditional logic for system override
+  
+  # If sensors predicts rain, notify owner that schedule may be altered
+  rain = False
+  message_1 = "Forecast does not call for precipitation."
+  if randForecast >= 75:
+    rain = True
+    message_1 = "Rain predicted."
+
+  # If sensors detect soil saturation, notify owner that schedule may be altered
+  saturation = False
+  message_2 = "Soil moisture levels within normal range."
+  if randSoilMoisture >= 90:
+    saturation = True
+    message_2 = "Soil has reached saturation levels."
+
+  # If either rain or soil saturation detected, system will be altered
+  status = True
+  message_3 = "System status normal."
+  if rain or saturation:
+    status = False
+    message_3 = "System override - sprinklers placed on stand-by mode."
+
+  if counter == numMsgs - 1:
+    dataElementDelimiter = ""
+  print iotmsg_data % (randForecast, randSoilMoisture, randTemp, randHumidity, randWind, rain, message_1, saturation, message_2, status, message_3) + dataElementDelimiter
+
+  index = index + 1
+
+print "]"</pre>
                     
                     
                     <h4 class="h4-sub-header">kafka-direct-iot-sql.py</h4>
-                    <pre>
-                        
-                    </pre>
+                    <pre>from __future__ import print_function
+
+import sys
+import re
+import json
+
+from pyspark import SparkContext
+from pyspark.sql import SQLContext
+from pyspark.streaming import StreamingContext
+from pyspark.streaming.kafka import KafkaUtils
+from pyspark.streaming.kafka import OffsetRange
+from operator import add
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: direct_kafka_wordcount.py &lt;broker_list&gt; &lt;topic&gt;", file=sys.stderr)
+        exit(-1)
+
+    sc = SparkContext(appName="PythonStreamingDirectKafkaWordCount")
+    ssc = StreamingContext(sc, 2)
+    sqlContext = SQLContext(sc)
+
+    brokers, topic = sys.argv[1:]
+    kvs = KafkaUtils.createDirectStream(ssc, [topic], {"metadata.broker.list": brokers})
+    jsonDStream = kvs.map(lambda (key, value): value)
+
+    # Define function to process RDDs of the json DStream to convert them
+    #   to DataFrame and run SQL queries
+    def process(time, rdd):
+        print("========= %s =========" % str(time))
+
+        try:
+            # Parse the one line JSON string from the DStream RDD
+	    jsonString = rdd.map(lambda x: \
+		re.sub(r"\s+", "", x, flags=re.UNICODE)).reduce(add)
+	    print("jsonString = %s" % str(jsonString))
+
+            # Convert the JSON string to an RDD
+            jsonRDDString = sc.parallelize([str(jsonString)])
+
+            # Convert the JSON RDD to Spark SQL Context
+	        jsonRDD = sqlContext.read.json(jsonRDDString)
+
+            # Register the JSON SQL Context as a temporary SQL Table
+	        print("JSON Schema\n=====")
+            jsonRDD.printSchema()
+            jsonRDD.registerTempTable("iotmsgsTable")
+
+            #############
+            # Processing and Analytics go here
+            #############
+
+            # Customer list
+            print("Customer List\n")
+            sqlContext.sql("select \
+              ownerid, location, zipcode, eventTime, timezone, guid \
+              from iotmsgsTable \
+              order by ownerid").show(n=100)
+
+            # Customer system readings
+            print("System Readings\n")
+            sqlContext.sql("select \
+              payload.data.forecast, payload.data.soilMoisture, payload.data.temperature, payload.data.humidity \
+              from iotmsgsTable \
+              order by forecast").show(n=100)
+              
+            print("INFO: Send data to visualization team for charts and graphs.\n")
+
+            # System status
+            print("System Status\n")
+            sqlContext.sql("select \
+              ownerid, location, payload.data.status, payload.data.rain, payload.data.saturation \
+              from iotmsgsTable \
+              order by status desc").show(n=100)
+
+            # Group timezones
+            print("Timezones\n")
+            sqlContext.sql("select timezone, count(timezone) \
+              from iotmsgsTable \
+              group by timezone \
+              order by timezone").show()
+
+            # Sort forecast
+            print("Sort Example\n")
+            sqlContext.sql("select payload.data.forecast \
+              from iotmsgsTable \
+              order by forecast desc").show(n=20)
+
+            # Search forecast
+            print("Search Example\n")
+            sqlContext.sql("select \
+              payload.data.forecast \
+              from iotmsgsTable \
+              where payload.data.forecast between 75.0 and 100.0 \
+              order by forecast desc").show(n=20)
+              
+            print("ALERT: Strong forecast for rain - update owners that system will be placed on standby mode.\n")
+
+            # Filter soil moisture
+            print("Filter Example\n")
+            sqlContext.sql("select \
+              payload.data.soilMoisture \
+              from iotmsgsTable \
+              where payload.data.soilMoisture >= 90.0").show(n=20)
+
+            print("ALERT: Soil saturation level reached - update owners that system will be placed on standby mode.\n")
+            
+            # Statistics - max and min temperature
+            print("Aggregate Example\n")
+            sqlContext.sql("select \
+              max(payload.data.temperature), min(payload.data.temperature) \
+              from iotmsgsTable").show()
+
+            # Clean-up
+	    sqlContext.dropTempTable("iotmsgsTable")
+        # Catch any exceptions
+        except:
+            pass
+
+    # Process each RDD of the DStream coming in from Kafka
+    jsonDStream.foreachRDD(process)
+ 
+    ssc.start()
+    ssc.awaitTermination()</pre>
                     
                     
                     
