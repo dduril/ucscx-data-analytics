@@ -57,11 +57,76 @@
                 <div class="col-sm-9">
                     <h3>Lab 8 - Putting it all Together</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <h4 class="h4-sub-header">Setup</h4>
+                    
+                    <!-- see lab-7.html -->
+                    <!--
+                    # SSH Terminal 1
+                    # --------------
+                    $ cd kafka_2.11-0.10.1.0
+                    $ bin/kafka-server-stop.sh
+                    $ bin/zookeeper-server-stop.sh
+                    $ pkill -9 java
+                    $ pkill -9 python
+
+                    # Start zookeeper:
+                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"
+                    bin/zookeeper-server-start.sh config/zookeeper.properties > \
+                      /tmp/zookeeper.log 2>&1 &
+
+                    # Start kafka:
+                    $ export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+                    bin/kafka-server-start.sh config/server.properties > \
+                      /tmp/kafka.log 2>&1 &
+
+                    #### Lowered memory settings
+                    # Start zookeeper:
+                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms32M"
+                    bin/zookeeper-server-start.sh config/zookeeper.properties > \
+                      /tmp/zookeeper.log 2>&1 &
+
+                    # Start kafka:
+                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"
+                    bin/kafka-server-start.sh config/server.properties > \
+                      /tmp/kafka.log 2>&1 &
+
+                    # SSH Terminal 2
+                    # --------------
+                    $ cd kafka_2.11-0.10.1.0
+                    $ spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.0.0-preview.jar \
+                      ./kafka-direct-iot-sql.py localhost:9092 iotmsgs
+                    ...
+                    ...
+
+                    # SSH Terminal 3
+                    # --------------
+                    $ cd /home/ec2-user
+                    #### 100 messages
+                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms48M"
+                    ./iotsimulator.py 100 | kafka_2.11-0.10.1.0/bin/kafka-console-producer.sh \
+                     --broker-list localhost:9092 --topic iotmsgs 
+                   -->
+                    
+                    <p></p>
+                    <div class="console">
+                        
                     </div>
+                    
+                    <h4 class="h4-sub-header">JSON Schema</h4>
+                    <pre>
+                        
+                    </pre>
+                    
+                    <h4 class="h4-sub-header">iotsimulator.py</h4>
+                    <pre>
+                        
+                    </pre>
+                    
+                    
+                    <h4 class="h4-sub-header">kafka-direct-iot-sql.py</h4>
+                    <pre>
+                        
+                    </pre>
                     
                 </div>
             </div>
