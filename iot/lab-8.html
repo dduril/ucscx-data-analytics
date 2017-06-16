@@ -61,81 +61,51 @@
                     
                     <p>SSH Terminal 1</p>
                     <div class="console">
-                        
+                    $ cd kafka_2.11-0.10.1.0<br>
+                    $ bin/kafka-server-stop.sh<br>
+                    $ bin/zookeeper-server-stop.sh<br>
+                    $ pkill -9 java<br>
+                    $ pkill -9 python<br>
                     </div>
                     
                     <p>Start zookeeper:</p>
                     <div class="console">
-                        
+                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"<br>
+                    bin/zookeeper-server-start.sh config/zookeeper.properties > \<br>
+                      /tmp/zookeeper.log 2>&amp;1 &amp;    
                     </div>
                     
                     <p>Start kafka:</p>
-                    <div class="console">
-                        
+                    <div class="console">   
+                    $ export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"<br>
+                    bin/kafka-server-start.sh config/server.properties > \<br>
+                      /tmp/kafka.log 2>&amp;1 &amp;   
                     </div>
                     
                     <p>Lowered memory settings are sometimes required when working with the AWS Free Tier.</p>
                     <div class="console">
-                        
+                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms32M"<br>
+                    bin/zookeeper-server-start.sh config/zookeeper.properties > \<br>
+                      /tmp/zookeeper.log 2>&amp;1 &amp;<br><br>
+
+                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"<br>
+                    bin/kafka-server-start.sh config/server.properties > \<br>
+                      /tmp/kafka.log 2>&amp;1 &amp;  
                     </div>
                     
                     <p>SSH Terminal 2</p>
                     <div class="console">
-                        
+                    $ cd kafka_2.11-0.10.1.0<br>
+                    $ spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.0.0-preview.jar \<br>
+                      ./kafka-direct-iot-sql.py localhost:9092 iotmsgs    
                     </div>
                     
                     <p>SSH Terminal 3</p>
                     <div class="console">
-                        
+                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms48M"<br>
+                    ./iotsimulator.py 100 | kafka_2.11-0.10.1.0/bin/kafka-console-producer.sh \<br>
+                     --broker-list localhost:9092 --topic iotmsgs  
                     </div>
-                    
-                    <!-- see lab-7.html -->
-                    <!--
-                    # SSH Terminal 1
-                    # --------------
-                    $ cd kafka_2.11-0.10.1.0
-                    $ bin/kafka-server-stop.sh
-                    $ bin/zookeeper-server-stop.sh
-                    $ pkill -9 java
-                    $ pkill -9 python
-
-                    # Start zookeeper:
-                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"
-                    bin/zookeeper-server-start.sh config/zookeeper.properties > \
-                      /tmp/zookeeper.log 2>&1 &
-
-                    # Start kafka:
-                    $ export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
-                    bin/kafka-server-start.sh config/server.properties > \
-                      /tmp/kafka.log 2>&1 &
-
-                    #### Lowered memory settings
-                    # Start zookeeper:
-                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms32M"
-                    bin/zookeeper-server-start.sh config/zookeeper.properties > \
-                      /tmp/zookeeper.log 2>&1 &
-
-                    # Start kafka:
-                    $ export KAFKA_HEAP_OPTS="-Xmx128M -Xms64M"
-                    bin/kafka-server-start.sh config/server.properties > \
-                      /tmp/kafka.log 2>&1 &
-
-                    # SSH Terminal 2
-                    # --------------
-                    $ cd kafka_2.11-0.10.1.0
-                    $ spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.0.0-preview.jar \
-                      ./kafka-direct-iot-sql.py localhost:9092 iotmsgs
-                    ...
-                    ...
-
-                    # SSH Terminal 3
-                    # --------------
-                    $ cd /home/ec2-user
-                    #### 100 messages
-                    $ export KAFKA_HEAP_OPTS="-Xmx64M -Xms48M"
-                    ./iotsimulator.py 100 | kafka_2.11-0.10.1.0/bin/kafka-console-producer.sh \
-                     --broker-list localhost:9092 --topic iotmsgs 
-                   -->
                     
                     <p>Checking the second SSH window - the messages appear in the output stream.</p>
                     <pre>
