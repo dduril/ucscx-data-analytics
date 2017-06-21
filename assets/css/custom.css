@@ -26,32 +26,32 @@ body {
 }
 
 /* da */
-.jumbotron-dark-blue {
+.da-jumbotron {
     background-color: #0e2f44;
 }
 
 /* dv */
-.jumbotron-dark-slate-gray {
+.dv-jumbotron {
     background-color: #2f4f4f;
 }
 
 /* hadoop */
-.jumbotron-dark-green {
+.hadoop-jumbotron {
     background-color: #006400;
 }
 
 /* iot */
-.jumbotron-dark-slate-blue {
+.iot-jumbotron {
     background-color: #483D8B;
 }
 
 /* nosql */
-.jumbotron-dark-violet {
+.nosql-jumbotron {
     background-color: #660066;
 }
 
 /* spark */
-.jumbotron-red {
+.spark-jumbotron {
     background-color: #990000;
 }
 /* end jumbotron */
