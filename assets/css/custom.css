@@ -25,26 +25,32 @@ body {
 	color: #fff;
 }
 
+/* da */
 .jumbotron-dark-blue {
     background-color: #0e2f44;
 }
 
+/* dv */
 .jumbotron-dark-slate-gray {
     background-color: #2f4f4f;
 }
 
+/* hadoop */
 .jumbotron-dark-green {
     background-color: #006400;
 }
 
+/* iot */
 .jumbotron-dark-slate-blue {
     background-color: #483D8B;
 }
 
+/* nosql */
 .jumbotron-dark-violet {
     background-color: #660066;
 }
 
+/* spark */
 .jumbotron-red {
     background-color: #990000;
 }
@@ -85,6 +91,21 @@ body {
 
 
 /* list-group-item */
+.da-list-group-item.active, .da-list-group-item.active:focus, .da-list-group-item.active:hover {
+    background-color: #0e2f44;
+    border-color: #0e2f44;
+}
+
+.dv-list-group-item.active, .dv-list-group-item.active:focus, .dv-list-group-item.active:hover {
+    background-color: #2f4f4f;
+    border-color: #2f4f4f;
+}
+
+.hadoop-list-group-item.active, .hadoop-list-group-item.active:focus, .hadoop-list-group-item.active:hover {
+    background-color: #006400;
+    border-color: #006400;
+}
+
 .iot-list-group-item.active, .iot-list-group-item.active:focus, .iot-list-group-item.active:hover {
     background-color: #483D8B;
     border-color: #483D8B;
@@ -93,6 +114,11 @@ body {
 .nosql-list-group-item.active, .nosql-list-group-item.active:focus, .nosql-list-group-item.active:hover {
     background-color: #660066;
     border-color: #660066;
+}
+
+.spark-list-group-item.active, .spark-list-group-item.active:focus, .spark-list-group-item.active:hover {
+    background-color: #990000;
+    border-color: #990000;
 }
 
 /* end list-group-item */
