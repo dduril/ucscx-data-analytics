@@ -27,31 +27,49 @@ body {
 
 /* da */
 .da-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #0e2f44;
 }
 
 /* dv */
 .dv-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #2f4f4f;
 }
 
 /* hadoop */
 .hadoop-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #006400;
 }
 
 /* iot */
 .iot-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #483D8B;
 }
 
 /* nosql */
 .nosql-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #660066;
 }
 
 /* spark */
 .spark-jumbotron {
+    margin-bottom: .5em;
+	padding: 1.8em 1.8em;
+    color: #fff;
     background-color: #990000;
 }
 /* end jumbotron */
