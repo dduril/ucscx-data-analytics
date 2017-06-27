@@ -54,26 +54,27 @@
                 <div class="col-sm-9">
                     <h3>Lab 1 - MongoDB Queries</h3>  
                     
-                    <p>Start mongod server</p>
-                    <div class="console">&gt; mongod --dbpath=data
+                    <h4 class="h4-sub-header">Start mongod server</h4>
+                    <div class="console">C:\development\mongodb&gt; mongod --dbpath=data
                     </div>
                     
-                    <p>Import US Data from zips.json file</p>
-                    <div class="console">&gt; mongoimport<br>
+                    <h4 class="h4-sub-header">Import US Data from zips.json file</h4>
+                    <div class="console">C:\Program Files\MongoDB\Server\3.2\bin&gt; mongoimport<br>
                        --db usdata<br>
                        --collection cityinfo<br>
                        --drop<br>
                        --file C:\development\mongoDB\zips.json
                     </div>
                     
-                    <p>Start mongo shell</p>
+                    <h4 class="h4-sub-header">Start mongo shell</h4>
                     <div class="console">&gt; mongo
                     </div>
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <h4 class="h4-sub-header">Explore databases</h4>
+                    <div class="console">
+                    &gt; show dbs<br>
+                    &gt; use usdata<br>
+                    &gt; show collections
                     </div>
                     
                 </div>
