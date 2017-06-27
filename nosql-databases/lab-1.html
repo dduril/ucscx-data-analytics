@@ -95,19 +95,32 @@
                     </div>
                     
                     <h4 class="h4-sub-header">A few more examples</h4>
-                    <pre>
-                        > cacitycursor=db.cityinfo.find({ $and: [{ state: "CA" }, { pop: { $gt: 1000, $lt: 10000 }}]})
-> cacitycursor.count()
-> cacitycursor.next()
+                    <div class="console">
+                        &gt; cacitycursor=db.cityinfo.find({ $and: [{ state: "CA" }, { pop: { $gt: 1000, $lt: 10000 }}]})<br>
+                        &gt; cacitycursor.count()<br>
+                        &gt; cacitycursor.next()<br><br>
 
-> db.cityinfo.find({ state: "CA" })
+                        &gt; db.cityinfo.find({ state: "CA" })<br><br>
 
-> cacitycursor=db.cityinfo.find({ $and: [ { state: "CA" },{ city: "SAN FRANCISCO" }]})
-> cacitycursor.count()
+                        &gt; cacitycursor=db.cityinfo.find({ $and: [ { state: "CA" },{ city: "SAN FRANCISCO" }]})<br>
+                        &gt; cacitycursor.count()<br><br>
 
-> cur=db.cityinfo.find({ _id: /9503/ })
-> cur.count()
-                    </pre>
+                        &gt; cur=db.cityinfo.find({ _id: /9503/ })<br>
+                        &gt; cur.count()
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Begins with "New"</h4>
+                    <div class="console">
+                    &gt; db.cityinfo.find({ city: { $regex: /^New/i }})</div>
+
+                    <h4 class="h4-sub-header">Contains "New"</h4>
+                    <div class="console">
+                    &gt; db.cityinfo.find({ city: { $regex: /New/i }})</div>
+
+                    <h4 class="h4-sub-header">Populations between 25,000 and 150,000 and border Pacific Ocean</h4>
+                    <div class="console">
+                    &gt; db.cityinfo.find({ $and: [{ state: { $in: ["AK", "CA", "HI", "OR", "WA"]} }, { pop: { $gt: 25000, $lt: 150000 }}]})</div>
+
                     
                 </div>
             </div>
