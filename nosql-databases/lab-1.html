@@ -77,6 +77,38 @@
                     &gt; show collections
                     </div>
                     
+                    <h4 class="h4-sub-header">Run some queries</h4>
+                    <div class="console">
+                    &gt; db.cityinfo.find()<br>
+                    &gt; db.cityinfo.find().limit(10)<br>
+                    &gt; db.cityinfo.count()<br>
+                    &gt; db.cityinfo.find({ pop: { $lt: 4000 }})
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Set variable for a collection</h4>
+                    <div class="console">
+                    &gt; smallcities=db.cityinfo<br>
+                    &gt; dbcursor=smallcities.find({ pop: { $lt: 2000 }})<br>
+                    &gt; dbcursor<br>
+                    &gt; dbcursor.hasNext()<br>
+                    &gt; dbcursor.next()
+                    </div>
+                    
+                    <h4 class="h4-sub-header">A few more examples</h4>
+                    <pre>
+                        > cacitycursor=db.cityinfo.find({ $and: [{ state: "CA" }, { pop: { $gt: 1000, $lt: 10000 }}]})
+> cacitycursor.count()
+> cacitycursor.next()
+
+> db.cityinfo.find({ state: "CA" })
+
+> cacitycursor=db.cityinfo.find({ $and: [ { state: "CA" },{ city: "SAN FRANCISCO" }]})
+> cacitycursor.count()
+
+> cur=db.cityinfo.find({ _id: /9503/ })
+> cur.count()
+                    </pre>
+                    
                 </div>
             </div>
         </div>
