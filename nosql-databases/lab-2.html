@@ -54,10 +54,41 @@
                 <div class="col-sm-9">
                     <h3>Lab 2 - MongoDB Aggregation 1</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
-            
-                    <div class="console">console section for linux command line...
+                    <h4 class="h4-sub-header">Start mongod server</h4>
+                    <div class="console">C:\development\mongodb&gt; mongod --dbpath=data
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Start mongo shell</h4>
+                    <div class="console">&gt; mongo
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Select database</h4>
+                    <div class="console">
+                    &gt; use usdata<br>
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Aggregation Example 1</h4>
+                    <p>Display the state and the name of the smallest city in each output document</p>
+                    <div class="console">
+                    &gt; db.cityinfo.aggregate([
+                    ... { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+                    ... { $sort: { pop: 1 } },
+                    ... { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}}},
+                    ... { $project:{ _id: 0,state: "$_id",city: "$smallestCity" }}
+                    ... ])
+                    </div>
+                    
+                    <h4 class="h4-sub-header">Aggregation Example 2</h4>
+                    <p>Display the third largest city in each state</p>
+                    <div class="console">
+                    &gt; db.cityinfo.aggregate( [
+                    ... { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
+                    ... { $sort: {pop: -1}},
+                    ... { $group: {_id: { state : "$_id.state"}, cities: { $push:{ city: "$_id.city"}}}
+                    ... }]).map( function(data) {
+                    ... data.cities = data.cities.slice(2, 3);
+                    ... return {state: data._id.state, city: (data.cities.length > 0) ? data.cities[0].city : "no city found"}
+                    ... });
                     </div>
                     
                 </div>
