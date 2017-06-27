@@ -54,6 +54,22 @@
                 <div class="col-sm-9">
                     <h3>Lab 1 - MongoDB Queries</h3>  
                     
+                    <p>Start mongod server</p>
+                    <div class="console">&gt; mongod --dbpath=data
+                    </div>
+                    
+                    <p>Import US Data from zips.json file</p>
+                    <div class="console">&gt; mongoimport<br>
+                       --db usdata<br>
+                       --collection cityinfo<br>
+                       --drop<br>
+                       --file C:\development\mongoDB\zips.json
+                    </div>
+                    
+                    <p>Start mongo shell</p>
+                    <div class="console">&gt; mongo
+                    </div>
+                    
                     <pre>
 pre section for code samples...</pre>
             
