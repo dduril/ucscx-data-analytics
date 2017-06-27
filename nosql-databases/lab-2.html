@@ -70,24 +70,24 @@
                     <h4 class="h4-sub-header">Aggregation Example 1</h4>
                     <p>Display the state and the name of the smallest city in each output document</p>
                     <div class="console">
-                    &gt; db.cityinfo.aggregate([
-                    ... { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
-                    ... { $sort: { pop: 1 } },
-                    ... { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}}},
-                    ... { $project:{ _id: 0,state: "$_id",city: "$smallestCity" }}
+                    &gt; db.cityinfo.aggregate([<br>
+                    ... { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},<br>
+                    ... { $sort: { pop: 1 } },<br>
+                    ... { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}}},<br>
+                    ... { $project:{ _id: 0,state: "$_id",city: "$smallestCity" }}<br>
                     ... ])
                     </div>
                     
                     <h4 class="h4-sub-header">Aggregation Example 2</h4>
                     <p>Display the third largest city in each state</p>
                     <div class="console">
-                    &gt; db.cityinfo.aggregate( [
-                    ... { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
-                    ... { $sort: {pop: -1}},
-                    ... { $group: {_id: { state : "$_id.state"}, cities: { $push:{ city: "$_id.city"}}}
-                    ... }]).map( function(data) {
-                    ... data.cities = data.cities.slice(2, 3);
-                    ... return {state: data._id.state, city: (data.cities.length > 0) ? data.cities[0].city : "no city found"}
+                    &gt; db.cityinfo.aggregate( [<br>
+                    ... { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },<br>
+                    ... { $sort: {pop: -1}},<br>
+                    ... { $group: {_id: { state : "$_id.state"}, cities: { $push:{ city: "$_id.city"}}}<br>
+                    ... }]).map( function(data) {<br>
+                    ... data.cities = data.cities.slice(2, 3);<br>
+                    ... return {state: data._id.state, city: (data.cities.length > 0) ? data.cities[0].city : "no city found"}<br>
                     ... });
                     </div>
                     
