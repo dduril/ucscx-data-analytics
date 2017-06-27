@@ -64,7 +64,43 @@
                     
                     <p>geodb collections</p>
                     <img src="../assets/img/nosql-lab-3a-1.png" class="img-responsive img-thumbnail" alt="MongoDb geodb collections">
-            
+                    
+                    <h4 class="h4-sub-header">Explore airports in California</h4>
+                    <pre>var cal = db.states.findOne({ code: "CA" });
+cal
+
+db.airports.find(
+    {
+    loc: {$geoWithin: {$geometry: cal.loc }}
+    },
+    { name: 1, type: 1, code: 1, _id: 0 }
+);</pre>
+                    
+                    <p>output</p>
+                    <img src="../assets/img/nosql-lab-3a-2.png" class="img-responsive img-thumbnail" alt="MongoDb geodb airports">
+                    
+                    <h4 class="h4-sub-header">All airports in California</h4>
+                    <pre>var ca_airports = db.airports.find(
+    {
+    loc: {$geoWithin: {$geometry: cal.loc }}
+    },
+    { name: 1, type: 1, code: 1, _id: 0 }
+);
+ca_airports.limit(10);
+ca_airports.count();</pre>
+                    <img src="../assets/img/nosql-lab-3a-3.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California airports">
+                    
+                    <h4 class="h4-sub-header">International airports in California</h4>
+                    <pre>var intl_airports = db.airports.find(
+    {
+    loc: {$geoWithin: {$geometry: cal.loc }},
+    type: "International"
+    },
+    { name: 1, type: 1, code: 1, _id: 0 }
+).sort({ name: 1 });
+intl_airports.limit(10);
+intl_airports.count();</pre>
+                    <img src="../assets/img/nosql-lab-3a-4.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California International airports">
                     
                 </div>
             </div>
