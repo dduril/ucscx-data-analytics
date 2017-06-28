@@ -131,22 +131,54 @@ db.states.find(
 );</pre>
                     <img src="../assets/img/nosql-lab-3a-5.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
                     
-                    <strong>Indexes</strong>
+                    <p><strong>Indexes</strong></p>
                     <pre>db.airports.getIndexes();
 db.airports.createIndex({ loc: 1 });
 db.airports.getIndexes();</pre>
                    
-                    <strong>Using pretty()</strong>
+                    <p><strong>Using pretty()</strong></p>
                     <pre>db.airports.find().limit(1).pretty();</pre>
                     <img src="../assets/img/nosql-lab-3a-6.png" class="img-responsive img-thumbnail" alt="MongoDb geodb">
                    
                    
                    
-                    <strong>Using $maxDistance and $minDistance</strong>
-                    <pre>
+                    <p><strong>Using $maxDistance and $minDistance</strong></p>
+                    <pre>db.airports.find(
+  {
+    loc: {
+      $near : {
+        $geometry : {
+          type : "Point",
+          coordinates : [-73.965355, 40.782865]
+        },
+        $maxDistance : 20000
+      }
+    },
+    type : "International"
+  },
+  {
+    name : 1,
+    code : 1,
+    _id : 0
+  }
+)
+
+db.airports.find(
+  {
+    loc: 
+      { $near : 
+        {
+          $geometry : { type : "Point", coordinates : [-73.965355,     40.782865] },
+          $minDistance : 21000,
+          $maxDistance : 100000
+        }
+      }
+    },
+  { name : 1, type : 1, code : 1, _id : 0 }
+)
                         
                     </pre>
-                    <img src="../assets/img/nosql-lab-3a-5.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
+                    <img src="../assets/img/nosql-lab-3a-7.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
                    
                    
                         
