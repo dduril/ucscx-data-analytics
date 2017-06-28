@@ -118,7 +118,7 @@ db.cityinfo.aggregate([
 { $group:{_id : "$_id.state",largestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}},
 ])
 
-# write a function that takes in a parameter to get the city with the largest popula,on
+# write a function that takes in a parameter to get the city with the largest population
 # display the state , city name, population of smallest city for a specific state
 function largestCity(st) {
 var dbc = db.cityinfo.aggregate([

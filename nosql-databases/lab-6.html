@@ -51,7 +51,56 @@
                     <a href="lab-7.html" class="list-group-item nosql-list-group-item">Lab 7 - AWS Replication and Sharding</a> 
                     </div>
                 </div>
-                
+<!--
+Set the MongoDB service to start at boot and activate it:
+
+Resources:
+https://docs.mongodb.com/ecosystem/platforms/amazon-ec2/
+https://github.com/SIB-Colombia/dataportal-explorer/wiki/How-to-install-node-and-mongodb-on-Amazon-EC2
+
+Here is what I typed into the SSH.
+
+$ sudo chkconfig mongod on
+$ sudo /etc/init.d/mongod start
+
+I confirmed that mongod was stopped.
+Stopped the EC2 instance.
+Started the EC2 instance.
+Then checked that mongod was started.
+See screenshot 5.
+ 
+> show dbs
+admin 0.000GB
+local 0.000GB
+> use test
+switched to db test
+> db.test.insert({"name" : "john smith"})
+WriteResult({ "nInserted" : 1 })
+> db.test.find()
+{ "_id" : ObjectId("58c1a439bd5679e0aadf945g"), "name" : "john smith" }
+> db.test.count()
+1
+> show dbs                   
+admin 0.000GB
+local 0.000GB
+test  0.000GB 
+                  
+Shell in from local system
+   
+C:\mongo -u [user] -p [password] [ip number]/test
+
+MongoDB shell version: 3.2.6
+connecting to: [ip number]/test               
+> db.test.find()
+{ "_id" : ObjectId("58c1a439bd5679e0aadf945g"), "name" : "john smith" } 
+> db.test.count()
+1  
+
+EC2 Amazon Linux AMI                          
+
+$ service mongod status
+mongod (pid 2500) is running...
+-->             
                 <div class="col-sm-9">
                     <h3>Lab 6 - AWS Instance Setup</h3>  
                     
