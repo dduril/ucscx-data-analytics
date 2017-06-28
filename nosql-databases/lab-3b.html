@@ -55,19 +55,139 @@
                 <div class="col-sm-9">
                     <h3>Lab 3b - MongoDB GeoData - Airports and Starbucks</h3>  
                     
-                    <h4 class="h4-sub-header"></h4>
-                    <p></p>
-                    <div class="console">
-                    </div>
- 
-<!--
-           
--->                   
-                    <pre>
-pre section for code samples...</pre>
+                    <h4 class="h4-sub-header">Sample Header</h4>
+                    <p>Description goes here.</p>
+                                       
+                    <pre>script samples...</pre>
             
                     <div class="console">console section for linux command line...
                     </div>
+ 
+<!--
+Write Javascript MongoDB shell code to do the following:
+
+- Find all airports within 300 miles of the Starbucks closest to the UCSC extension in the collection of 10 Starbucks
+// mongo api documentation - converted miles to meters i.e. 300 miles equals ~482,803 meters
+db.airports.find(
+  {
+    loc : {
+      $near : {
+        $geometry : {
+          type : "Point",
+          coordinates : [-121.983468, 37.389151]
+        },
+        $minDistance : 0,
+        $maxDistance : 482803
+      }
+    }
+  },
+  {
+    name : 1,
+    code : 1,
+    _id : 0
+  }
+)
+
+- Find all airports within 500 miles of the furthest Starbucks in the collection of 10 Starbucks
+// 500 miles equals ~804,672 meters
+db.airports.find(
+  {
+    loc : {
+      $near : {
+        $geometry : {
+          type : "Point",
+          coordinates : [-121.9279, 37.385266]
+        },
+        $minDistance : 0,
+        $maxDistance : 804672
+      }
+    }
+  },
+  {
+    name : 1,
+    code : 1,
+    _id : 0
+  }
+)
+
+- Find the average distance to a Starbucks (from the collection of 10) from the UCSC extension.
+# add index and use runCommand()
+db.starbucks.createIndex( { loc : "2dsphere" } )
+db.runCommand(
+   {
+     geoNear: "starbucks",
+     near: { type: "Point", coordinates: [ -121.97877798426615, 37.379623979833376 ] },
+     spherical: true
+   }
+)
+
+---------------------------------------------------------------------------------------------------
+
+    Setup work for starbucks collection
+    
+    Goto https://www.starbucks.com/store-locator
+    Enter the address of the UCSC extension:
+
+    3175 Bowers Ave, Santa Clara, CA 95054
+    [-121.97877798426615, 37.379623979833376]
+
+- Take down the addresses of the first 10 Starbucks on the list:
+
+    3113 Mission College, Santa Clara, CA 95054
+    3700 Thomas Road, Santa Clara, CA 95054
+    3970 Rivermark Plaza, Santa Clara, CA 95054
+    2370 El Camino Real, Santa Clara, CA 95050
+    3605 El Camino Real, Santa Clara, CA 95051
+    2004 El Camino Real, Santa Clara, CA 95050
+    1003 E. El Camino Real, Sunnyvale, CA 94087
+    2077 Airport Blvd, San Jose, CA 95131
+    31 Rio Robles East, San Jose, CA 95134
+    2579 North First Street, San Jose, CA 95131
+
+http://www.latlong.net/convert-address-to-lat-long.html (Links to an external site.)
+
+and get the longitude and latitude for each Starbucks:
+ 
+    3113 Mission College, Santa Clara, CA 95054         37.389151, -121.983468
+    3700 Thomas Road, Santa Clara, CA 95054             37.386252, -121.960889
+    3970 Rivermark Plaza, Santa Clara, CA 95054         37.394812, -121.947658
+    2370 El Camino Real, Santa Clara, CA 95050          37.351712, -121.967785
+    3605 El Camino Real, Santa Clara, CA 95051          37.352989, -121.997273
+    2004 El Camino Real, Santa Clara, CA 95050          37.349815, -121.960438
+    1003 E. El Camino Real, Sunnyvale, CA 94087         37.352629, -122.007803
+    2077 Airport Blvd, San Jose, CA 95131               37.369560, -121.929225
+    31 Rio Robles East, San Jose, CA 95134              37.406520, -121.941785
+    2579 North First Street, San Jose, CA 95131         37.385266, -121.9279
+
+- Once you have the following info create a new collection within the GeoDB called starbucks 
+  and add documents for the 10 Starbucks you got addresses and coordinate for:
+
+    # JSON
+    { "_id" : "1", "address" : "3113 Mission College", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.983468, 37.389151 ] }
+    { "_id" : "2", "address" : "3700 Thomas Road", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.960889, 37.386252 ] }
+    { "_id" : "3", "address" : "3970 Rivermark Plaza", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.947658, 37.394812 ] }
+    { "_id" : "4", "address" : "2370 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95050, "loc" : [ -121.967785, 37.351712 ] }
+    { "_id" : "5", "address" : "3605 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95051, "loc" : [ -121.997273, 37.352989 ] }
+    { "_id" : "6", "address" : "2004 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95050, "loc" : [ -121.960438, 37.349815 ] }
+    { "_id" : "7", "address" : "1003 E. El Camino Real", "city" : "Sunnyvale", "state" : "CA", "zip" : 94087, "loc" : [ -122.007803, 37.352629 ] }
+    { "_id" : "8", "address" : "2077 Airport Blvd", "city" : "San Jose", "state" : "CA", "zip" : 95131, "loc" : [ -121.929225, 37.369560 ] }
+    { "_id" : "9", "address" : "31 Rio Robles East", "city" : "San Jose", "state" : "CA", "zip" : 95134, "loc" : [ -121.941785, 37.406520 ] }
+    { "_id" : "10", "address" : "2579 North First Street", "city" : "San Jose", "state" : "CA", "zip" : 95131, "loc" : [ -121.9279, 37.385266 ] }
+
+    # Insert via shell
+    db.starbucks.insert({ "_id" : "1", "address" : "3113 Mission College", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.983468, 37.389151 ] });
+    db.starbucks.insert({ "_id" : "2", "address" : "3700 Thomas Road", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.960889, 37.386252 ] });
+    db.starbucks.insert({ "_id" : "3", "address" : "3970 Rivermark Plaza", "city" : "Santa Clara", "state" : "CA", "zip" : 95054, "loc" : [ -121.947658, 37.394812 ] });
+    db.starbucks.insert({ "_id" : "4", "address" : "2370 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95050, "loc" : [ -121.967785, 37.351712 ] });
+    db.starbucks.insert({ "_id" : "5", "address" : "3605 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95051, "loc" : [ -121.997273, 37.352989 ] });
+    db.starbucks.insert({ "_id" : "6", "address" : "2004 El Camino Real", "city" : "Santa Clara", "state" : "CA", "zip" : 95050, "loc" : [ -121.960438, 37.349815 ] });
+    db.starbucks.insert({ "_id" : "7", "address" : "1003 E. El Camino Real", "city" : "Sunnyvale", "state" : "CA", "zip" : 94087, "loc" : [ -122.007803, 37.352629 ] });
+    db.starbucks.insert({ "_id" : "8", "address" : "2077 Airport Blvd", "city" : "San Jose", "state" : "CA", "zip" : 95131, "loc" : [ -121.929225, 37.369560 ] });
+    db.starbucks.insert({ "_id" : "9", "address" : "31 Rio Robles East", "city" : "San Jose", "state" : "CA", "zip" : 95134, "loc" : [ -121.941785, 37.406520 ] });
+    db.starbucks.insert({ "_id" : "10", "address" : "2579 North First Street", "city" : "San Jose", "state" : "CA", "zip" : 95131, "loc" : [ -121.9279, 37.385266 ] });
+
+           
+-->                   
                     
                 </div>
             </div>

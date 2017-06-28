@@ -55,11 +55,182 @@
                 <div class="col-sm-9">
                     <h3>Lab 4 - MongoDB Aggregation 2</h3>  
                     
-                    <pre>
-pre section for code samples...</pre>
+                    <h4 class="h4-sub-header">Sample Header</h4>
+                    <p>Description goes here.</p>
+                                       
+                    <pre>script samples...</pre>
             
                     <div class="console">console section for linux command line...
                     </div>
+                    
+<!--
+# display the state and the name of smallest city in each output document
+db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: 1 } },
+{ $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}}},
+{ $project:{ _id: 0,state: "$_id",city: "$smallestCity" }}
+])
+
+# display the state ,the city, the population of smallest city in each output document
+db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: 1 } },
+{ $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
+])
+
+# display the state , city name, population of smallest city for a specific state
+db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: 1 } },
+{ $match: {"_id.state": "NH" }},
+{ $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
+])
+
+# write a function that takes in a parameter to get the city with the smallest
+#   population in a state
+# display the state , city name, population of smallest city for a specific state
+function smallestCity(st) {
+var dbc = db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: 1 } },
+{ $match: {"_id.state": st }},
+{ $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
+]);
+return dbc;
+}
+smallestCity("NH")
+smallestCity("NY")
+
+# display state , city name of largest city in each output document
+db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: 1 } },
+{ $group:{_id : "$_id.state",largestCity: { $last: "$_id.city"}}},
+{ $project:{ _id: 0,state: "$_id",city: "$largestCity" }}
+])
+
+# display the state , city name, population of largest city for a specific state
+db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: -1 } },
+{ $match: {"_id.state": "NH" }},
+{ $group:{_id : "$_id.state",largestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}},
+])
+
+# write a function that takes in a parameter to get the city with the largest popula,on
+# display the state , city name, population of smallest city for a specific state
+function largestCity(st) {
+var dbc = db.cityinfo.aggregate([
+{ $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
+{ $sort: { pop: -1 } },
+{ $match: {"_id.state": st }},
+{ $group:{_id : "$_id.state",largestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
+]);
+return dbc;
+}
+largestCity("NH")
+largestCity("NY")
+
+# write the MongoDB javascript shell code
+# needed to get the 3rd largest city in each state
+
+// Solution 1
+// create a document as follows:
+// _id: state:state-name,
+// cities: sorted array of documents: { city:city-name }
+//
+// so each document created by the group,sort,group clauses in the aggrega,on pipeline is of the
+// form: { _id:{state : city-name}, cities: [ { city: name-01}, city: name-02, …} ] _
+//
+// the $push operator creates an array of city documents in the final group statement
+//
+// .map(data) is called once of each document created by the aggregation pipeline and returns
+// the 3rd largest city in each document (and each state and its cities are in one document
+db.cityinfo.aggregate( [
+{ $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
+{ $sort: {pop: -1}},
+{ $group: {_id: { state : "$_id.state"}, cities: { $push:{ city: "$_id.city"}}}
+}]).map( function(data) {
+data.cities = data.cities.slice(2, 3);
+return {state: data._id.state, city: (data.cities.length > 0) ? data.cities[0].city : "no city found"
+}});
+
+// Solution 2
+// The first 3 clauses in the aggregation pipeline – group,sort.group create a document of the same
+// form as solution 1 (previous slide) – each document is of the form:
+// { _id : state-name, rankcity:[ {pop : n, city: name }, {pop : n, city: name },…]
+// like the previous solution the array is sorted in descending order
+//
+// the $project clause takes the 3rd element from the sorted rankarray – skip=2, limit=1
+// the final sort clause sorts in descending order
+db.cityinfo.aggregate ( [
+{$group:{_id:{state:"$state",city:"$city"}, pop: {$sum: "$pop" } } } ,
+{$sort: { "_id.state" :1 , pop: -1 } } ,
+{$group:{ _id: "$_id.state", rankcity: {$push: { pop: "$pop" , city: "$_id.city" } } } } ,
+{$project: { ThirdLargestCity: { $slice: ["$rankcity", 2 , 1] } } },
+{$sort: { _id: 1}}
+] )
+
+// Solution 3, part 01
+// create a collection as follows:
+// _id: state.city
+// pop: sum of all zips code areas in that state.city
+// state –
+// the "vars:" in the $let clause sets a temp variable called statez to the state from $_id.state
+// the "in:" in the $let clause outs (puts in the document) the value of temp variable statez
+// normally we use "$field-name" (i.e. "$_id.state" in a statement to access the value from
+// a field previously defined in the statement, notice we need "$$" in the "in:" por,on of $let
+db.cityinfo.aggregate([
+    { $group: { _id: { state: "$state", city: "$city" },pop: { $sum: "$pop" } } },
+    { $project: 
+        { _id : 1, pop : 1, state : 
+            { $let: 
+                {
+                vars : { statez : "$_id.state" },
+                in : { $toUpper: "$$statez" }
+                } 
+            } 
+        }
+    },
+    { $sort: { _id : 1 } },
+    { $out: "tmpcityinfo"} 
+])
+
+// Solution 3, part 02
+// create a collection of states
+db.cityinfo.aggregate( [
+{ $project: { _id : 0, state : 1 }} ,
+{ $group: { _id : "$state" }},
+{ $out: "tmpstates" }
+])
+
+// Solution 3, part 03
+// create a function that takes in the name of a state and a number
+// and prints out the "nth" largest city based on that number
+function processState( st, n ) {
+if (n <= 0) return;
+var citycnt = db.tmpcityinfo.find( { state : st }).count();
+if (n > citycnt) return; var index = n - 1;
+var nthlargestcity = db.tmpcityinfo.find( { state : st }).sort( { pop : -1 } )[index];
+print(st + ' ' + n + ' largest=' + nthlargestcity._id.city);
+}
+// Test processState
+processState("CA", 5)
+processState("NY", 5)
+
+// Solution 3, part 04
+// loop through each state
+var curstate = db.tmpstates.find();
+var statecnt=curstate.count();
+for (var i = 1; i < statecnt; i++) {
+processState(curstate[i]._id, 3);
+}
+
+// cleanup
+db.tmpcityinfo.drop()
+db.tmpstates.drop()                
+-->                                                           
                     
                 </div>
             </div>
