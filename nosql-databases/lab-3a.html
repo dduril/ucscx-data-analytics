@@ -131,18 +131,18 @@ db.states.find(
 );</pre>
                     <img src="../assets/img/nosql-lab-3a-5.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
                     
-                    <p><strong>Indexes</strong></p>
+                    <h4 class="h4-sub-header">Indexes</h4>
                     <pre>db.airports.getIndexes();
 db.airports.createIndex({ loc: 1 });
 db.airports.getIndexes();</pre>
                    
-                    <p><strong>Using pretty()</strong></p>
+                    <h4 class="h4-sub-header">Using pretty()</h4>
                     <pre>db.airports.find().limit(1).pretty();</pre>
                     <img src="../assets/img/nosql-lab-3a-6.png" class="img-responsive img-thumbnail" alt="MongoDb geodb">
                    
                    
                    
-                    <p><strong>Using $maxDistance and $minDistance</strong></p>
+                    <h4 class="h4-sub-header">Using $maxDistance and $minDistance</h4>
                     <pre>db.airports.find(
   {
     loc: {
