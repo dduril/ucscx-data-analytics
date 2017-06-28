@@ -65,7 +65,7 @@
                     <p>geodb collections</p>
                     <img src="../assets/img/nosql-lab-3a-1.png" class="img-responsive img-thumbnail" alt="MongoDb geodb collections">
                     
-                    <h4 class="h4-sub-header">Explore airports in California</h4>
+                    <h4 class="h4-sub-header">Explore Airports in California</h4>
                     <pre>var cal = db.states.findOne({ code: "CA" });
 cal
 
@@ -77,9 +77,9 @@ db.airports.find(
 );</pre>
                     
                     <p>output</p>
-                    <img src="../assets/img/nosql-lab-3a-2.png" class="img-responsive img-thumbnail" alt="MongoDb geodb airports">
+                    <img src="../assets/img/nosql-lab-3a-2.png" class="img-responsive img-thumbnail" alt="MongoDb geodb Airports">
                     
-                    <h4 class="h4-sub-header">All airports in California</h4>
+                    <h4 class="h4-sub-header">All Airports in California</h4>
                     <pre>var ca_airports = db.airports.find(
     {
     loc: {$geoWithin: {$geometry: cal.loc }}
@@ -88,9 +88,9 @@ db.airports.find(
 );
 ca_airports.limit(10);
 ca_airports.count();</pre>
-                    <img src="../assets/img/nosql-lab-3a-3.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California airports">
+                    <img src="../assets/img/nosql-lab-3a-3.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
                     
-                    <h4 class="h4-sub-header">International airports in California</h4>
+                    <h4 class="h4-sub-header">International Airports in California</h4>
                     <pre>var intl_airports = db.airports.find(
     {
     loc: {$geoWithin: {$geometry: cal.loc }},
@@ -100,8 +100,114 @@ ca_airports.count();</pre>
 ).sort({ name: 1 });
 intl_airports.limit(10);
 intl_airports.count();</pre>
-                    <img src="../assets/img/nosql-lab-3a-4.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California International airports">
+                    <img src="../assets/img/nosql-lab-3a-4.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California International Airports">
                     
+                    <h4 class="h4-sub-header">Examples using Explain</h4>
+                    <pre>db.airports.find(
+    {
+    loc : { $geoWithin : { $geometry : cal.loc } },
+    type : "Interna1onal"
+    },
+    { name : 1 , type : 1, code : 1, _id: 0 }
+).sort({ name : 1 }).explain();
+
+db.airports.ensureIndex( { "loc" : "2dsphere" } );
+db.airports.find(
+    {
+    loc : { $geoWithin : { $geometry : cal.loc } },
+    type : "Interna1onal"
+    },
+    { name : 1 , type : 1, code : 1, _id: 0 }
+).sort({ name : 1 }).explain();</pre>
+                    
+                    <h4 class="h4-sub-header">geoIntersects ne "CA"</h4>
+                    <pre>var cal = db.states.findOne( {code : "CA"} );
+db.states.find(
+    {
+    loc : { $geoIntersects : { $geometry : cal.loc } } ,
+    code : { $ne : "CA" }
+    },
+    { name : 1, code : 1 , _id : 0 }
+);</pre>
+                    <img src="../assets/img/nosql-lab-3a-5.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
+                    
+                    <strong>Indexes</strong>
+                    <pre>db.airports.getIndexes();
+db.airports.createIndex({ loc: 1 });
+db.airports.getIndexes();</pre>
+                   
+                    <strong>Using pretty()</strong>
+                    <pre>db.airports.find().limit(1).pretty();</pre>
+                    <img src="../assets/img/nosql-lab-3a-6.png" class="img-responsive img-thumbnail" alt="MongoDb geodb">
+                   
+                   
+                   
+                    <strong>Using $maxDistance and $minDistance</strong>
+                    <pre>
+                        
+                    </pre>
+                    <img src="../assets/img/nosql-lab-3a-5.png" class="img-responsive img-thumbnail" alt="MongoDb geodb California Airports">
+                   
+                   
+                        
+                    <!--
+db.airports.find(
+    {
+        loc: {
+            $near : {
+                $geometry : {
+                    type : "Point",
+                    coordinates : [-73.965355, 40.782865]
+                },
+                $maxDistance : 20000
+            }
+        },
+        type : "International"
+    },
+    {
+        name : 1,
+        code : 1,
+        _id : 0
+    }
+)
+
+db.airports.createIndex({ loc : "2dsphere" })
+db.airports.getIndexes()
+
+db.airports.find(
+    {
+        loc: {
+            $near : {
+                $geometry : {
+                    type : "Point",
+                    coordinates : [-73.965355, 40.782865]
+                },
+                $maxDistance : 20000
+            }
+        },
+        type : "International"
+    },
+    {
+        name : 1,
+        code : 1,
+        _id : 0
+    }
+)
+
+db.airports.find(
+    {
+        loc: 
+            { $near : 
+                {
+                    $geometry : { type : "Point", coordinates : [-73.965355, 40.782865] },
+                    $minDistance : 21000,
+                    $maxDistance : 100000
+                }
+            }
+        },
+    { name : 1, type : 1, code : 1, _id : 0 }
+)
+                    -->
                 </div>
             </div>
         </div>
