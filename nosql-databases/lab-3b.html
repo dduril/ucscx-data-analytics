@@ -55,19 +55,11 @@
                 <div class="col-sm-9">
                     <h3>Lab 3b - MongoDB GeoData - Airports and Starbucks</h3>  
                     
-                    <h4 class="h4-sub-header">Sample Header</h4>
-                    <p>Description goes here.</p>
+                    <h4 class="h4-sub-header">Finding Airports</h4>
+                    
+                    <div class="div-sub-header">Find all airports within 300 miles of the Starbucks closest to the UCSC extension in the collection of 10 Starbucks:</div>
                                        
-                    <pre>script samples...</pre>
-            
-                    <div class="console">console section for linux command line...
-                    </div>
- 
-<!--
-Write Javascript MongoDB shell code to do the following:
-
-- Find all airports within 300 miles of the Starbucks closest to the UCSC extension in the collection of 10 Starbucks
-// mongo api documentation - converted miles to meters i.e. 300 miles equals ~482,803 meters
+                    <pre>// mongo api documentation - converted miles to meters i.e. 300 miles equals ~482,803 meters
 db.airports.find(
   {
     loc : {
@@ -86,10 +78,11 @@ db.airports.find(
     code : 1,
     _id : 0
   }
-)
-
-- Find all airports within 500 miles of the furthest Starbucks in the collection of 10 Starbucks
-// 500 miles equals ~804,672 meters
+)</pre>
+                    <img src="../assets/img/nosql-lab-3b-1.png" class="img-responsive img-thumbnail" alt="MongoDb geodb - Starbucks Locations">
+           
+                    <div class="div-sub-header">Find all airports within 500 miles of the furthest Starbucks in the collection of 10 Starbucks:</div>
+                    <pre>// 500 miles equals ~804,672 meters
 db.airports.find(
   {
     loc : {
@@ -108,10 +101,11 @@ db.airports.find(
     code : 1,
     _id : 0
   }
-)
-
-- Find the average distance to a Starbucks (from the collection of 10) from the UCSC extension.
-# add index and use runCommand()
+)</pre>
+                    <img src="../assets/img/nosql-lab-3b-2.png" class="img-responsive img-thumbnail" alt="MongoDb geodb - Starbucks Locations">
+                    
+                    <div class="div-sub-header">Find the average distance to a Starbucks (from the collection of 10) from the UCSC extension:</div>
+                    <pre>// add index and use runCommand()
 db.starbucks.createIndex( { loc : "2dsphere" } )
 db.runCommand(
    {
@@ -119,8 +113,11 @@ db.runCommand(
      near: { type: "Point", coordinates: [ -121.97877798426615, 37.379623979833376 ] },
      spherical: true
    }
-)
+)</pre>
+                    <img src="../assets/img/nosql-lab-3b-3.png" class="img-responsive img-thumbnail" alt="MongoDb geodb - Starbucks Locations">
+            
 
+<!-- 
 ---------------------------------------------------------------------------------------------------
 
     Setup work for starbucks collection

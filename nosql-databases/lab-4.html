@@ -54,42 +54,36 @@
                 
                 <div class="col-sm-9">
                     <h3>Lab 4 - MongoDB Aggregation 2</h3>  
-                    
-                    <h4 class="h4-sub-header">Sample Header</h4>
-                    <p>Description goes here.</p>
-                                       
-                    <pre>script samples...</pre>
-            
-                    <div class="console">console section for linux command line...
-                    </div>
-                    
-<!--
-# display the state and the name of smallest city in each output document
-db.cityinfo.aggregate([
+                  
+                    <div class="div-sub-header">Display the state and the name of smallest city in each output document:</div>
+                    <pre>db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
 { $sort: { pop: 1 } },
 { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}}},
 { $project:{ _id: 0,state: "$_id",city: "$smallestCity" }}
-])
-
-# display the state ,the city, the population of smallest city in each output document
-db.cityinfo.aggregate([
+])</pre>
+                    <img src="../assets/img/nosql-lab-4-1.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    
+                    <div class="div-sub-header">Display the state, the city, the population of smallest city in each output document:</div>              
+                    <pre>db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
 { $sort: { pop: 1 } },
 { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
-])
-
-# display the state , city name, population of smallest city for a specific state
-db.cityinfo.aggregate([
+])</pre>
+                    <img src="../assets/img/nosql-lab-4-2.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    <div class="div-sub-header">Display the state, city name, population of smallest city for a specific state:</div>              
+                    <pre>db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
 { $sort: { pop: 1 } },
 { $match: {"_id.state": "NH" }},
 { $group:{_id : "$_id.state",smallestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}}
-])
-
-# write a function that takes in a parameter to get the city with the smallest
-#   population in a state
-# display the state , city name, population of smallest city for a specific state
+])</pre>
+                    <img src="../assets/img/nosql-lab-4-3.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    <div class="div-sub-header">Write a function that takes in a parameter to get the city with the smallest population in a state:</div>              
+                    <pre>//display the state, city name, population of smallest city for a specific state
 function smallestCity(st) {
 var dbc = db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
@@ -100,26 +94,29 @@ var dbc = db.cityinfo.aggregate([
 return dbc;
 }
 smallestCity("NH")
-smallestCity("NY")
-
-# display state , city name of largest city in each output document
-db.cityinfo.aggregate([
+smallestCity("NY")</pre>
+                    <img src="../assets/img/nosql-lab-4-4.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    <div class="div-sub-header">Display state, city name of largest city in each output document:</div>              
+                    <pre>db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
 { $sort: { pop: 1 } },
 { $group:{_id : "$_id.state",largestCity: { $last: "$_id.city"}}},
 { $project:{ _id: 0,state: "$_id",city: "$largestCity" }}
-])
-
-# display the state , city name, population of largest city for a specific state
-db.cityinfo.aggregate([
+])</pre>
+                    <img src="../assets/img/nosql-lab-4-5.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    <div class="div-sub-header">Display the state, city name, population of largest city for a specific state:</div>              
+                    <pre>db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
 { $sort: { pop: -1 } },
 { $match: {"_id.state": "NH" }},
 { $group:{_id : "$_id.state",largestCity: { $first: "$_id.city"}, pop: {$first: "$pop"}}},
-])
-
-# write a function that takes in a parameter to get the city with the largest population
-# display the state , city name, population of smallest city for a specific state
+])</pre>
+                    <img src="../assets/img/nosql-lab-4-6.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                    
+                    <div class="div-sub-header">Write a function that takes in a parameter to get the city with the largest population:</div>              
+                    <pre>//display the state , city name, population of smallest city for a specific state
 function largestCity(st) {
 var dbc = db.cityinfo.aggregate([
 { $group:{_id: { state: "$state", city: "$city" },pop: { $sum: "$pop" }}},
@@ -130,8 +127,10 @@ var dbc = db.cityinfo.aggregate([
 return dbc;
 }
 largestCity("NH")
-largestCity("NY")
-
+largestCity("NY")</pre>
+                    <img src="../assets/img/nosql-lab-4-7.png" class="img-responsive img-thumbnail" alt="MongoDb Aggregation Examples">
+                  
+<!--
 # write the MongoDB javascript shell code
 # needed to get the 3rd largest city in each state
 
