@@ -1,7 +1,5 @@
 ---
 title: "Data Analysis - Lab-3"
-author: "Doug Duril"
-date: "June 30, 2017"
 output: html_document
 ---
 
@@ -9,7 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### ASSIGNMENT	#	3
 
 In this homework, you will do some data analysis using R for the Firest Fire Data described
 http://archive.ics.uci.edu/ml/machine-learningdatabases/forest-fires/forestfires.csv

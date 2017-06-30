@@ -1,7 +1,5 @@
 ---
 title: "Data Analysis - Lab-1"
-author: "Doug Duril"
-date: "June 30, 2017"
 output: html_document
 ---
 
