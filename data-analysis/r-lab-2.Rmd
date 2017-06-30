@@ -1,0 +1,133 @@
+---
+title: "Data Analysis - Lab-2"
+author: "Doug Duril"
+date: "June 30, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Create two matrices from the given set of numbers:
+X1 = {2,3,7,1,6,2,3,5,1} and X2 = {3,2,9,0,7,8,5,8,2}
+
+``` {r q1}
+X1 <- matrix(c(2,3,7,1,6,2,3,5,1), nrow=3, ncol=3)
+X2 <- matrix(c(3,2,9,0,7,8,5,8,2), nrow=3, ncol=3)
+X1
+X2
+```
+
+2. Find the matrix product.
+
+``` {r q2}
+X3 <- X1 %*% X2
+X3
+```
+
+3. Find the inverse of the matrix and prove that it is correct.
+
+``` {r q3}
+solve(X3)
+
+iX3 <- solve(X3)
+X3 %*% iX3
+```
+
+4. Load the Animals data set from the "MASS" package.
+
+``` {r q4}
+library(MASS)
+head(Animals)
+```
+
+5. Find the correlation coefficient of brain and body in this data set and comment on the relation between them.
+
+``` {r q5}
+body <- Animals$body
+brain <- Animals$brain
+cor(brain, body)
+
+cor(Animals)
+```
+
+6. Load USArrests data set. 
+
+Load USArrests and run a few functions to review dataset - head, names, list data.
+
+``` {r q6-a}
+data(USArrests)
+head(USArrests)
+names(USArrests)
+USArrests
+```
+
+Comment on the distribution of the variables. Is there any relation between UrbanPop and three crimes?
+
+``` {r q6-b}
+summary(USArrests)
+```
+
+``` {r q6-c}
+cor(USArrests)
+```
+
+Running plot for these combinations, Murder and Assault do not appear to have a relation to UrbanPop. The distribution of plot points are scattered to the point that they do not appear to correlate to UrbanPop.
+
+``` {r q6-d}
+with(USArrests, plot(UrbanPop, Murder))
+with(USArrests, plot(UrbanPop, Assault))
+```
+ 	 
+Plotting Rape against UrbanPop - there are some outliers, but there does seem to be a relationship between Rape and UrbanPop. There is an indication of a correlation and more analysis could be performed.
+
+``` {r q6-e}
+with(USArrests, plot(UrbanPop, Rape))
+```
+ 
+7. Which states has most and least assault, murder, and rape arrests?
+
+``` {r q7}
+# most and least assault
+x <- which(USArrests$Assault == max(USArrests$Assault))
+rownames(USArrests)[x]
+x <- which(USArrests$Assault == min(USArrests$Assault))
+rownames(USArrests)[x]
+
+# most and least murder
+x <- which(USArrests$Murder == max(USArrests$Murder))
+rownames(USArrests)[x]
+x <- which(USArrests$Murder == min(USArrests$Murder))
+rownames(USArrests)[x]
+
+# most and least rape
+x <- which(USArrests$Rape == max(USArrests$Rape))
+rownames(USArrests)[x]
+x <- which(USArrests$Rape == min(USArrests$Rape))
+rownames(USArrests)[x]
+```
+
+8. List the states which have assault arrests more than median of the country.
+
+``` {r q8}
+assault.median = median(USArrests$Assault)
+assault.median
+subset(USArrests, Assault > assault.median, select= c(UrbanPop, Assault))
+```
+
+9. Which states are in the bottom 25% of murder?
+
+``` {r q9}
+bottomQuartileMurderRate <- quantile(USArrests$Murder)[2]
+bottomQuartileMurderRate
+subset(USArrests, Murder < bottomQuartileMurderRate, select= c(UrbanPop, Murder))
+```
+
+10. Which states are in the top 25% of the murder.
+
+``` {r q10}
+topQuartileMurderRate <- quantile(USArrests$Murder)[4]
+topQuartileMurderRate
+subset(USArrests, Murder > topQuartileMurderRate, select= c(UrbanPop, Murder))
+```
