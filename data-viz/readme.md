@@ -4,9 +4,9 @@
 
 #### Tools
 
-Tableau Desktop, MS Excel, MySQL, File formats (CSV, JSON)
+Tableau Desktop, MS Excel, MySQL, File formats (csv, tsv, json)
 
 #### Resources
 
-- **<a href="https://www.tableau.com/">Tableau</a>**
+- **[Tableau](<a href="https://www.tableau.com/)**
 
