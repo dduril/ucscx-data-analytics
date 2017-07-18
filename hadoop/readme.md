@@ -1,12 +1,14 @@
-### Hadoop: Distributed Processing of Big Data
+### UCSC Extension - Database and Data Analytics Certficate
+
+#### ### Hadoop: Distributed Processing of Big Data
 
 **[Hadoop: Distributed Processing of Big Data](https://dduril.github.io/ucscx-data-analytics/hadoop/)**
 
-#### Tools
+#### Tools and Software
 
 Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle VirtualBox, Cloudera Platform, Eclipse, Java, Maven
 
-#### Resources
+#### Additional Resources
 
 **Java**
 
@@ -22,3 +24,6 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 - **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
 
+#### Main Site for the Data Analysis Portfolio
+
+**[Home](https://dduril.github.io/ucscx-data-analytics/)**
