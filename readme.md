@@ -9,7 +9,7 @@ My course work at UCSC Silicon Valley will allow me to specialize in the followi
 Here is the link to the main github.io site: 
 **[Data Analysis, Home](https://dduril.github.io/ucscx-data-analytics/)**
 
-### Winter 2017
+### Course Schedule - Winter 2017
 
 ----------
 
@@ -17,17 +17,10 @@ Here is the link to the main github.io site:
 - **[NoSQL Databases](https://dduril.github.io/ucscx-data-analytics/nosql-databases/)**
 - **[Dashboards and Data Visualization](https://dduril.github.io/ucscx-data-analytics/data-viz/)** 
 	
-### Spring 2017
+### Course Schedule - Spring 2017
 
 ----------
 
 - **[Apache Spark with Scala](https://dduril.github.io/ucscx-data-analytics/spark-with-scala/)**
 - **[Hadoop: Distributed Processing of Big Data](https://dduril.github.io/ucscx-data-analytics/hadoop/)**
 - **[The Internet of Things: Big Data Processing and Analytics](https://dduril.github.io/ucscx-data-analytics/iot/)**
-
-
-
-
-
-
-
