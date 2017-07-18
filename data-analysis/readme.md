@@ -7,10 +7,6 @@ solid introduction to the field of data analytics primarily using the R programm
 
 **[Data Analysis, Introduction](https://dduril.github.io/ucscx-data-analytics/data-analysis/)**
 
-#### Main Site for the Data Analysis Portfolio
-
-**[Home](https://dduril.github.io/ucscx-data-analytics/)**
-
 #### Tools and Software
 
 R, RStudio, R Markdown, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, tidyverse), MS Excel, Google Sheets, File formats (csv, tsv, txt, json)
@@ -21,3 +17,7 @@ R, RStudio, R Markdown, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, t
 - **[RStudio](https://www.rstudio.com/)**
 - **[R Markdown](http://rmarkdown.rstudio.com/)**
 - **R Packages**
+
+#### Main Site for the Data Analysis Portfolio
+
+**[Home](https://dduril.github.io/ucscx-data-analytics/)**
