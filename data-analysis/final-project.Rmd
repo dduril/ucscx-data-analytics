@@ -1,18 +1,328 @@
 ---
-title: "Data Analysis - Final Project"
-author: "Doug Duril"
-date: "July 12, 2017"
+title: "Solar Panel Degradation Analysis"
+author: "Harry White, Doug Duril"
+date: "March 23, 2017"
 output: html_document
 ---
+
+###Introduction, Motivation
+
+The market for solar energy is growing rapidly, as more businesses and homeowners install solar generation systems. While the basic technology for photovoltaic (PV) panels, inverters, and other hardware is well-defined, there continue to be questions about the long-term performance. The majority of the solar infrastructure has been installed in the last 10 yrs, not long enough to get significant data on long-term failure modes such as decrease in PV power output over time. The prediction of power degradation over time is a significant business issue for the PV industry, as it will have a strong effect on both the end customers and the PV manufacturers. Faster rates of PV degradation will result in unhappy customers and increased costs to the PV manufacturers (warranty claims, etc). 
+
+To fill the knowledge gap and better understand technical and business risks, manufacturers have done accelerated-life testing on PV components and panels at elevated stress conditions (high temperature, humidity, UV exposure). Some information is known about the activation energies for the Physics of Failure (PoF), and this can be used to estimate degradation over time. 
+
+Analysis of PV degradation is a data-intensive activity and a great opportunity to apply the strengths of R software. For our project, we have hypothesized that we own a solar company that is deploying PV panels nationwide. Our company is based in Minneapolis, and we have some field experience for panels deployed in that location, but we want to estimate power degradation that will occur in hotter and/or more humid environments (southern states, for example).  
+
+---
+
+###Dataset Information
+
+A literature search shows that the primary factors causing PV degradation include temperature, humidity, and UV exposure. For our R project we defined an expression which includes temperature and humidity, and used this to estimate degradation in a set of 50 cities in which our PV panels will be deployed.
+
+
+$$Degradation = (1-EXP(A*[Years]))*(EXP(H*((1/[Humid1])-(1/[Humid2]))))* \\ (EXP(0.6*((k/(273.15+[Temp1]))-(k/(273.15+[Temp2])))))$$
+
+where 
+
+A = Baseline degradation due to time only. In this project it was set to -0.004.  
+H = Acceleration factor due to humidity. In this project it was set to 0.3.  
+B = Acceleration factor due to temperature. In this project it was set to 0.6.  
+k = Boltzmann's constant, =11605 in the units used here.   
+Temp1, Humid1 = Baseline temperature and humidity in Minneapolis  
+Temp2, Humid2 = Temperature and humidity of the city   
+
+Using this approach, we can find out the relative degradation in each city compared to Minneapolis (home site of the company, and where some field data is available). 
+
+Information on temperature and humidity as a function of location was acquired and built into the City Weather dataset.
+
+
+
+The City Weather dataset was collected from [Current Results](http://www.currentresults.com/) and contains State-wide temperature and humidity averages. The city data is based on weather station readings collected during the years 1971 - 2000 and provided by the [NOAA National Climatic Data Center](https://www.ncdc.noaa.gov/) of the United States.
+
+For the purposes of this analysis, the team chose to focus on the Top 50 US Cities to examine the effects of high heat and humidity on materials used in the manufacture of solarpanels.
+
+**Average Yearly Temperature and Humidity for Major US Cities**
+_(cities.json)_
+
+* **city**: City             
+* **state**: State     
+* **region**: US Census Region (Northeast, Midwest, South, and West)
+* **division**: US Census Division (2-3 per US Census Region) 
+* **avg_temp_f**: Average Yearly Temperature Fahrenheit  
+* **avg_temp_c**: Average Yearly Temperature Celsius 
+* **avg_humidity**: Average Yearly Humidity 
+* **latitude**: Latitude  
+* **longitude**: Longitude
+
+**Solar Degradation Ongoing**
+_(solar-degradation-ongoing.csv)_
+
+* **city**: City (foreign key to cities.json:city)
+* **[X0-X50]**: Calculated values from year 0 to year 50
+
+---
+
+###Packages
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Under Development
-
-
-```{r cars}
-summary(cars)
+```{r load_packages, message=FALSE, warning=FALSE}
+## Loading required packages
+library(dplyr)
+library(ggplot2)
+library(jsonlite)
+library(maps)
 ```
 
+---
+
+###Data Loading
+
+```{r load_datasets, message=FALSE, warning=FALSE}
+
+## read in json file
+cities_file <- "c:/development/cities.json" # assuming file is on this path
+cities_str <- paste(readLines(cities_file), collapse = "")
+cities_df <- fromJSON(cities_str)
+dim(cities_df)
+
+## output sample city data.frame
+(select(head(cities_df), city, state, avg_temp_f, avg_temp_c, avg_humidity))
+
+## read in Solar Degradation data csv file
+dg_df <- read.csv("c:/development/solar-degradation-ongoing.csv")
+dim(dg_df)
+
+## output sample degradation data.frame
+(select(head(dg_df), city, X0, X1, X2, X4, X5, X6, X7, X8, X9, X10))
+
+
+## merge data sets
+merged_df <- merge(cities_df, dg_df)
+(select(head(merged_df), city, avg_temp_c, avg_humidity, X0, X1, X2, X4, X5))
+
+
+## top five hottest cities
+(top_five_hottest <- select(head(arrange(merged_df,desc(avg_temp_c)), n = 5), city, avg_temp_c))
+
+## top five coolest cities
+(top_five_coolest <- select(tail(arrange(merged_df,desc(avg_temp_c)), n = 5), city, avg_temp_c))
+
+## top five high humidity cities
+(top_five_high_humidity <- select(head(arrange(merged_df,desc(avg_humidity)), n = 5), city, avg_humidity))
+
+## top five lowest humidity cities
+(top_five_low_humidity <- select(tail(arrange(merged_df,desc(avg_humidity)), n = 5), city, avg_humidity))
+
+## output single test row
+sample_row <-merged_df[8,]
+(select(head(sample_row), city, avg_temp_c, avg_humidity, X0, X1, X2, X4, X5))
+
+
+tr_df <- read.csv("c:/development/solar-degradation-ongoing-transpose.csv")
+dim(tr_df)
+
+colnames(tr_df)
+
+tr_df[-1] <- data.frame(apply(tr_df[-1], 2, function(x) as.numeric(sub("%","",as.character(x)))))
+
+```
+
+---
+
+###Exploratory
+
+Data was first analyzed in Excel. In our project, the equation to model the degradation was used to build a table in Excel which was then copied into R. 
+
+Additional data was acquired through online sources: [Current Results](http://www.currentresults.com/) and [NOAA National Climatic Data Center](https://www.ncdc.noaa.gov/)
+
+```{r data_frame_properties}
+
+## confirm data frame
+class(cities_df)
+
+## names
+names(cities_df)
+
+## top rows
+head(cities_df)
+
+## summary
+summary(cities_df)
+
+## average temperature celsius
+min(cities_df$avg_temp_c)
+max(cities_df$avg_temp_c)
+fivenum(cities_df$avg_temp_c)
+
+## average humidity
+min(cities_df$avg_humidity)
+max(cities_df$avg_humidity)
+fivenum(cities_df$avg_humidity)
+
+```
+
+```{r filter_examples}
+
+## filter
+## filter by region == "West"
+df <- filter(cities_df, region == "West")
+df <- select(df, region, division, state, city, avg_temp_f, avg_temp_c)
+df <- arrange(df, region, division, state, city)
+df
+
+## filter, Select, Arrange by division == "Pacific""
+df <- filter(cities_df, division == "Pacific")
+df <- select(df, region, division, state, city, avg_temp_f, avg_temp_c)
+df <- arrange(df, region, division, state, city)
+df
+
+```
+
+```{r arrange_examples}
+
+## arrange
+## arrange by avg_temp_f desc
+df <- select(cities_df, state, city, avg_temp_c, avg_humidity)
+df <- arrange(df, desc(avg_temp_c))
+df
+```
+
+```{r mutate_examples}
+
+## mutate - add column - simple addition, but could use complex formulas
+df <- select(cities_df,
+                      city,
+                      avg_temp_f
+)
+mutate(df,
+       temp_plus_10 = avg_temp_f + 10.0,
+       temp_plus_20 = avg_temp_f + 20.0
+)
+
+```
+
+```{r summarize_examples}
+
+## group_by and summarize
+summarize(cities_df, mean_temp_c = mean(avg_temp_c, na.rm = TRUE))
+
+```
+
+---
+
+###Visualization
+
+```{r ggplot_histogram}
+
+## bar chart - average temp celsius
+ggplot(cities_df, aes(x=city, y=avg_temp_c)) +
+  geom_bar(stat = "identity", fill = "lightblue", color="black") +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5)) + ggtitle("Top Cities - Average Temp. Celsius")
+
+## bar chart - average humidity
+ggplot(cities_df, aes(x=city, y=avg_humidity)) +
+  geom_bar(stat = "identity", fill = "lightblue", color="black") +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5)) + ggtitle("Top Cities - Average Humidity")
+
+## histogram of avg_temp_c
+ggplot(cities_df, aes(avg_temp_c)) +
+  geom_histogram(
+    binwidth = 2,
+    color="black", 
+    fill="lightblue"
+  ) + ggtitle("Top Cities - Average Temp. Celsius")
+
+
+## coolest city - minneapolis
+x <- subset(tr_df, select = c(Year ,Minneapolis))
+x
+
+ggplot(data=tr_df, aes(x=Year, y=Minneapolis, group=1)) + geom_line(color="blue") + ggtitle("Coolest City: Minneapolis - Degradation in PV Power Over Time")
+
+## warmest city - miami
+x <- subset(tr_df, select = c(Year ,Miami))
+x
+
+ggplot(data=tr_df, aes(x=Year, y=Miami, group=1)) + geom_line(color="orange") + ggtitle("Warmest City: Miami - Degradation in PV Power Over Time")
+
+
+ggplot(tr_df, aes(x = Year)) + 
+  geom_line(aes(y = Minneapolis), colour="lightblue") + 
+  geom_line(aes(y = Louisville), colour = "darkgray") +
+  geom_line(aes(y = Miami), colour = "orange") + 
+  ylab(label="Years") + 
+  xlab("Cities") +
+  ggtitle("Degradation in PV Power Over Time - Warmest, Average, Coolest Cities")
+
+
+top_five_hottest <- select(head(arrange(merged_df,desc(avg_temp_c)), n = 5), city, avg_temp_c, X0, X10, X20, X30, X40, X50)
+top_five_hottest <- plyr::rename(top_five_hottest, c("X0"="year 0", "X10"="10 yrs", "X20"="20 yrs", "X30"="30 yrs", "X40"="40 yrs", "X50"="50 yrs"))
+top_five_hottest
+
+```
+
+```{r ggplot_us_map, message=FALSE, warning=FALSE}
+
+## select fields from data set
+cities_df <- select(cities_df, state, city, avg_temp_f, avg_temp_c, avg_humidity)
+
+us <- map_data("state")
+
+arr <- cities_df %>% 
+  add_rownames("region") %>% 
+  mutate(region=tolower(state))
+
+gg <- ggplot()
+gg <- gg + geom_map(data=us, map=us,
+                    aes(x=long, y=lat, map_id=region),
+                    fill="#dddddd", color="#ffffff", size=0.15)
+gg <- gg + geom_map(data=arr, map=us,
+                    aes(fill=avg_temp_f, map_id=region),
+                    color="#ffffff", size=0.15)
+gg <- gg + scale_fill_continuous(low='yellow', high='red', 
+                                 guide='colorbar')
+gg <- gg + labs(x=NULL, y=NULL)
+gg <- gg + coord_map("albers", lat0 = 39, lat1 = 45) 
+gg <- gg + theme(panel.border = element_blank())
+gg <- gg + theme(panel.background = element_blank())
+gg <- gg + theme(axis.ticks = element_blank())
+gg <- gg + theme(axis.text = element_blank())
+gg <- gg + ggtitle("United States Heat Map")
+gg
+
+```
+
+---
+
+###Findings
+
+Tables and charts show that there is significant power degradation in cities with high average temperatures and humidity. This is important information to know for PV companies that are deploying product in these locations. Actions will need to be taken to mitigate the effect of increased failures in these cities. Some options include adjustments to warranty cost planning, availability of spares, etc. 
+
+---
+
+###Conclusions, Future Enhancements
+
+The values of A and H were chosen to be somewhat worst-case assumptions. Going forward, these constants can be adjusted to get a better match between the model and the field data which is accumulated. 
+
+If this project were to be continued, a next step would be to have the equation built directly into R and the table generated within R. 
+
+Another enhancement would be to add a failure criteria, say a 20% decrease in power, and build a table which shows the estimated number of years of life in each city until the PV panel is considered to have failed.  
+
+---
+
+###References
+
+1. Ndiaye et al, 2013, Degradations of silicon photovoltaic modules: A literature review, Solar Energy 96 (2013) 140-151.  
+
+2.  Manuel Vazquez and Ignacio Rey-Stolle, Photovoltaic Module Reliability Model Based on Field Degradation Studies, Prog. Photovolt: Res. Appl. 2008; 16:419-433.
+
+---
+
+###Data Sources
+
+1.  [Current Results](http://www.currentresults.com/) - _Weather and science facts. Curated weather data for countries, states and cities._  
+
+2.  [NOAA National Climatic Data Center](https://www.ncdc.noaa.gov/) - _Responsible for preserving, monitoring, assessing, and providing public access to the Nation's climatic data._
