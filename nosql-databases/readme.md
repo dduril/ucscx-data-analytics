@@ -1,8 +1,8 @@
 ### UCSC Extension - Database and Data Analytics Certficate
 
-#### ### NoSQL Databases
+#### [NoSQL Databases](https://dduril.github.io/ucscx-data-analytics/nosql-databases/)
 
-**[NoSQL Databases](https://dduril.github.io/ucscx-data-analytics/nosql-databases/)**
+
 
 #### Tools and Software
 
@@ -19,6 +19,8 @@ MongoDB, Cassandra, JavaScript, Node.js, Python, AWS, Linux,
 	- **<a href="https://www.python.org/">Python</a>**
 	- **<a href="https://api.mongodb.com/python/current/">PyMongo</a>**  
 	
+---
+
 #### Main Site for the Data Analysis Portfolio
 
 **[Home](https://dduril.github.io/ucscx-data-analytics/)**

@@ -1,8 +1,8 @@
 ### UCSC Extension - Database and Data Analytics Certficate
 
-#### ### Apache Spark with Scala
+#### [Apache Spark with Scala](https://dduril.github.io/ucscx-data-analytics/spark-with-scala/)
 
-**[Apache Spark with Scala](https://dduril.github.io/ucscx-data-analytics/spark-with-scala/)**
+
 
 #### Tools and Software
 
@@ -15,6 +15,8 @@ Spark, Databricks (cloud-based data processing using Spark), Scala, Scala IDE fo
 - **<a href="https://databricks.com/">Databricks</a>**
 - **<a href="https://www.oracle.com/java/index.html">Java</a>**
 - **<a href="https://www.scala-lang.org/">Scala</a>**
+
+---
 
 #### Main Site for the Data Analysis Portfolio
 

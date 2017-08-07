@@ -1,11 +1,9 @@
 ### UCSC Extension - Database and Data Analytics Certficate
 
-#### Data Analysis, Introduction
+#### [Data Analysis, Introduction](https://dduril.github.io/ucscx-data-analytics/data-analysis/)
 
 This is the one of the core required courses for the Database and Data Analytics Certificate program offered by UCSC Silicon Valley Extension. It includes a 
 solid introduction to the field of data analytics primarily using the R programming language.
-
-**[Data Analysis, Introduction](https://dduril.github.io/ucscx-data-analytics/data-analysis/)**
 
 #### Tools and Software
 
@@ -17,6 +15,8 @@ R, RStudio, R Markdown, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, t
 - **[RStudio](https://www.rstudio.com/)**
 - **[R Markdown](http://rmarkdown.rstudio.com/)**
 - **R Packages**
+
+---
 
 #### Main Site for the Data Analysis Portfolio
 
