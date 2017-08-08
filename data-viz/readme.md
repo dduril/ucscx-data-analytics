@@ -10,7 +10,7 @@ Tableau Desktop, MS Excel, MySQL, File formats (csv, tsv, json)
 
 #### Additional Resources
 
-- **[Tableau](<a href="https://www.tableau.com/)**
+- **[Tableau](https://www.tableau.com/)**
 
 ---
 
