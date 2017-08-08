@@ -2,7 +2,7 @@
 
 #### [Dashboards and Data Visualization](https://dduril.github.io/ucscx-data-analytics/data-viz/)
 
-
+Data visualization principles and techniques using Tableau and publicly available datasets. Management of downloaded data sets, data preparation and setup, best practices, and documentation of completed visualizations and dashboards.
 
 #### Tools and Software
 

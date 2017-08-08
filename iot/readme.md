@@ -2,7 +2,7 @@
 
 #### [The Internet of Things: Big Data Processing and Analytics](https://dduril.github.io/ucscx-data-analytics/iot/)
 
-
+Coverage of The Internet of Things (IoT), Industrial Internet of Things (IIoT), and Machine-to-Machine (M2M) data processing and analytics by using Amazon Web Services (AWS), simulated IoT data, and Python scripting.
 
 #### Tools and Software
 

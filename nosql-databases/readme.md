@@ -2,7 +2,7 @@
 
 #### [NoSQL Databases](https://dduril.github.io/ucscx-data-analytics/nosql-databases/)
 
-
+Local and cloud-based (AWS) installations of MongoDB to learn techniques for configuring and building NoSQL database systems. Emphasis on MongoDB, Cassandra, JavaScript, Node.js, Python, and BASH scripting to implement projects.
 
 #### Tools and Software
 

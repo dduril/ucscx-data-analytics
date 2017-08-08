@@ -2,7 +2,7 @@
 
 #### [Apache Spark with Scala](https://dduril.github.io/ucscx-data-analytics/spark-with-scala/)
 
-
+Architecture and execution model of the Apache Spark data processing engine and the functional programming language Scala. Coverage of the Spark API - RDD, Streaming, Spark SQL using the Databricks Community Edition.
 
 #### Tools and Software
 

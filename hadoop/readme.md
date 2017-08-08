@@ -2,7 +2,7 @@
 
 #### [Hadoop: Distributed Processing of Big Data](https://dduril.github.io/ucscx-data-analytics/hadoop/)
 
-
+The Cloudera Hadoop Platform including MapReduce frameworks (MapReduce 2 and Spark), Hadoop Distributed File System (HDFS) and development of data processing applications using Java in an Eclipse/Maven environment.
 
 #### Tools and Software
 
