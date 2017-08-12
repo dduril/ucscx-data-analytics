@@ -17,7 +17,7 @@ body {
 /* end navbar */
 
 
-/* jumbotron */
+/* jumbotron custom styles */
 .home-jumbotron {
     margin-bottom: .5em;
 	padding: 1.8em 1.8em;
@@ -25,7 +25,7 @@ body {
 	color: #fff;
 }
 
-/* da */
+/* da (data-analysis) */
 .da-jumbotron {
     margin-bottom: .5em;
 	padding: 1.8em 1.8em;
@@ -33,7 +33,7 @@ body {
     background-color: #0e2f44;
 }
 
-/* dv */
+/* dv (data visualization) */
 .dv-jumbotron {
     margin-bottom: .5em;
 	padding: 1.8em 1.8em;
@@ -75,7 +75,7 @@ body {
 /* end jumbotron */
 
 
-/* home page */
+/* home page custom styles */
 .home-page-col-sm-6 {
     padding-left: 0px;
 }
@@ -95,7 +95,7 @@ body {
 /* content pages */
 .page-icon {
     padding-left: 0px;
-    color: #333;/*#337ab7;*/
+    color: #333;
 }
 
 .page-section-header {
@@ -115,7 +115,6 @@ body {
     padding-top: 30px;
     padding-bottom: 20px;
 }
-
 /* end content pages */
 
 
@@ -149,8 +148,8 @@ body {
     background-color: #990000;
     border-color: #990000;
 }
-
 /* end list-group-item */
+
 
 /* console */
 .console {
@@ -165,6 +164,7 @@ body {
     width: 100%;
 }
 /* end console */
+
 
 /* footer */
 .row-footer {
