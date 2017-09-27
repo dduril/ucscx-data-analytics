@@ -6,11 +6,12 @@ The Cloudera Hadoop Platform including MapReduce frameworks (MapReduce 2 and Spa
 
 #### Tools and Software
 
-Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle VirtualBox, Cloudera Platform, Eclipse, Java, Maven
+Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle VirtualBox, Cloudera Platform, Eclipse, Java, Maven, Linux Command Line
 
 #### Additional Resources
 
 **Cloudera**
+
 - **[Cloudera QuickStart VM](https://www.cloudera.com/downloads/quickstart_vms/5-12.html)**
 
 **Java**
@@ -20,6 +21,7 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 - **<a href="https://maven.apache.org/">Maven</a>**
 
 **Hadoop**
+
 - **<a href="http://hadoop.apache.org/">Hadoop</a>**
 - **<a href="http://spark.apache.org/">Spark</a>**
 - **<a href="https://pig.apache.org/">Pig</a>**
@@ -28,6 +30,7 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
 
 **Oracle VirtualBox**
+
 - **[VirtualBox 5.1](https://www.virtualbox.org/)**
 
 ---

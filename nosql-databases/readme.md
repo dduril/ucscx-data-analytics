@@ -6,7 +6,7 @@ Local and cloud-based (AWS) installations of MongoDB to learn techniques for con
 
 #### Tools and Software
 
-MongoDB, Cassandra, JavaScript, Node.js, Python, AWS, Linux, 
+MongoDB, Cassandra, JavaScript, Node.js, Python, AWS, Linux Command Line, 
 
 #### Additional Resources
 
