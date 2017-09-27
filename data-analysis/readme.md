@@ -16,7 +16,6 @@ R, RStudio, R Markdown, R Packages (dplyr, stringr, lubridate, ggplot2, ggmap, t
 - **[R](https://cran.r-project.org/)**
 - **[RStudio](https://www.rstudio.com/)**
 - **[R Markdown](http://rmarkdown.rstudio.com/)**
-- **R Packages**
 
 ---
 

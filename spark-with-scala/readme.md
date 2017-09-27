@@ -6,7 +6,7 @@ Architecture and execution model of the Apache Spark data processing engine and 
 
 #### Tools and Software
 
-Spark, Databricks (cloud-based data processing using Spark), Scala, Scala IDE for Eclipse, SBT
+Spark, Databricks (cloud-based data processing using Spark), Scala, Scala IDE for Eclipse, SBT (Scala Build Tool)
 
 #### Additional Resources
 

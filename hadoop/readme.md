@@ -10,6 +10,9 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 
 #### Additional Resources
 
+**Cloudera**
+- **[Cloudera QuickStart VM](https://www.cloudera.com/downloads/quickstart_vms/5-12.html)**
+
 **Java**
 
 - **<a href="https://www.eclipse.org">Eclipse</a>**
@@ -23,6 +26,9 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 - **<a href="https://hive.apache.org/">Hive</a>**
 - **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
 - **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
+
+**Oracle VirtualBox**
+- **[VirtualBox 5.1](https://www.virtualbox.org/)**
 
 ---
 
