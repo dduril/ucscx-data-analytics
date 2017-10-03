@@ -10,11 +10,11 @@ Spark, PySpark, Kafka, Zookeeper, Python, AWS, SSH, Linux
 
 #### Additional Resources
 
-- **<a href="https://aws.amazon.com/">Amazon Web Services (AWS)</a>**
-    - **<a href="https://aws.amazon.com/documentation/">Documentation</a>**
-- **<a href="http://hadoop.apache.org/">Apache Hadoop</a>**
-- **<a href="http://spark.apache.org/">Apache Spark</a>**
-- **<a href="https://en.wikipedia.org/wiki/Internet_of_things">The Internet of Things</a> _(Wikipedia page)_
+- **[Amazon Web Services (AWS)](https://aws.amazon.com/)**
+    - **[Documentation](https://aws.amazon.com/documentation/)**
+- **[Apache Hadoop](http://hadoop.apache.org/)**
+- **[Apache Spark](http://spark.apache.org/)**
+- **[The Internet of Things](https://en.wikipedia.org/wiki/Internet_of_things)** _(Wikipedia page)_
 
 ---
 

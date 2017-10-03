@@ -16,18 +16,18 @@ Hadoop, HDFS, HBase, Hive, MapReduce, Spark, Sqoop, Flume, Kafka, Oracle Virtual
 
 **Java**
 
-- **<a href="https://www.eclipse.org">Eclipse</a>**
-- **<a href="http://www.oracle.com/technetwork/java/index.html">Java</a>**
-- **<a href="https://maven.apache.org/">Maven</a>**
+- **[Eclipse](https://www.eclipse.org)**
+- **[Java](http://www.oracle.com/technetwork/java/index.html)**
+- **[Maven](https://maven.apache.org/)**
 
 **Hadoop**
 
-- **<a href="http://hadoop.apache.org/">Hadoop</a>**
-- **<a href="http://spark.apache.org/">Spark</a>**
-- **<a href="https://pig.apache.org/">Pig</a>**
-- **<a href="https://hive.apache.org/">Hive</a>**
-- **<a href="http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/">Hive - SQL Cheat Sheet</a>**
-- **<a href="https://zookeeper.apache.org/">Zookeeper</a>**
+- **[Hadoop](http://hadoop.apache.org/)**
+- **[Spark](http://spark.apache.org/)**
+- **[Pig](https://pig.apache.org/)**
+- **[Hive](https://hive.apache.org/)**
+- **[Hive - SQL Cheat Sheet](http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)**
+- **[Zookeeper](https://zookeeper.apache.org/)**
 
 **Oracle VirtualBox**
 

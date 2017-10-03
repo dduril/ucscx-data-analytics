@@ -10,16 +10,16 @@ MongoDB, Cassandra, JavaScript, Node.js, Python, AWS, Linux Command Line,
 
 #### Additional Resources
 
-- **<a href="https://aws.amazon.com/">Amazon Web Services</a>**
-- **<a href="http://cassandra.apache.org/">Cassandra</a>**
-- **<a href="https://www.mongodb.com/">MongoDB</a>**
+- **[Amazon Web Services](https://aws.amazon.com/)**
+- **[Cassandra](http://cassandra.apache.org/)**
+- **[MongoDB](https://www.mongodb.com/)**
 
 **Programming**
 
-- **<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>** _(MDN)_
-- **<a href="https://nodejs.org/en/">Node.js</a>**
-- **<a href="https://www.python.org/">Python</a>**
-- **<a href="https://api.mongodb.com/python/current/">PyMongo</a>**  
+- **[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(MDN)_
+- **[Node.js](https://nodejs.org/en/)**
+- **[Python](https://www.python.org/)**
+- **[PyMongo](https://api.mongodb.com/python/current/)**  
 	
 ---
 
