@@ -49,13 +49,163 @@
                 </div>
                 
                 <div class="col-sm-9">
-                    <h3>Spark &amp; RDD</h3> 
+                    <h3>Spark &amp; RDD Writing Assignment</h3> 
                       
-                    <div class="div-sub-header">sub header content...</div> 
+                    <div class="div-sub-header"><a href="http://www-bcf.usc.edu/~minlanyu/teach/csci599-fall12/papers/nsdi_spark.pdf" target="_blank">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></div> 
                                                       
-                    <pre>pre section for code samples...</pre>
-            
-                    <div class="console">console section for command line...</div>
+                    <p>The purpose of the first assignment: complete the reading of the research paper and answer some questions.</p>
+                    
+                    <p>Additional information can be acquired through online searches of documentation and technical blogs.</p>
+                    
+<pre>                  
+Questions:
+
+1. In your own words, describe RDD
+
+RDD is a representation of a data sharing abstraction that addresses the problems of data replication, 
+I/O operations, and serialization typically associated with processing large sets of data. By moving 
+the processing in-memory, RDD can reduce the issues of replication, I/O and serialization.
+
+Spark and RDD support some common use cases - iterative programs (machine learning algorithms) and 
+interactive data mining (multiple ad-hoc queries used on the same collection of data). Enabling the 
+reuse of data and persisting the intermediate results of data processing operations allows Spark to
+achieve unrivaled results and efficiency.
+        
+2. What are the main use cases that Spark was designed for?
+
+Spark was designed to process big data in-memory and fast. With that in mind, there are 
+many use cases that come to mind for data mining and analytics. The broad categories include 
+streaming data (streaming ETL, data enrichment or combining live and static data, trigger 
+event detection - fraud detection, complex session analysis - authenticated website activity), 
+machine learning (predictive analytics, marketing purposes, recommendation engines), interactive 
+analysis (web analytics), and fog computing (decentralized data processing of IoT devices and sensors).
+
+
+3. What are the differences between transformations and actions and what are the advantages of 
+having transformations lazily evaluated?
+
+Transformations are lazy operations that define a new RDD. Examples include map, filter, flatMap, 
+sample, groupByKey, reduceByKey, union, join, cogroup, crossProduct, mapValues, sort, and partitionBy. 
+The names of these operations are mostly self explanatory and indicate that the output is another 
+view of the dataset - filter, sample, join, sort.
+
+Actions launch a computation to return a value to the program or write data to external storage. 
+Examples include count, collect, reduce, lookup, and save. These operations also indicate their 
+functionality - count (return number of elements in dataset), collect (return the elements in 
+dataset), save (output the dataset to storage system)
+
+Lazy evaluation of transformations means that the results are not computed right away, but rather when an
+action is invoked. This enables Spark to run more efficiently as it can decide when its the best time to 
+compute a result.      
+
+
+4. How does RDD handle fault tolerance?
+
+RDDs provide an interface of course-grained transformations (map, filter, sample, join, sort) 
+that apply the same operation to many data items. This allows for efficiently providing fault 
+tolerance by logging the transformations used to build a dataset (its lineage) rather than the 
+actual data.
+        
+If a partition of an RDD is lost, the RDD has enough information about how it was derived from 
+other RDDs to recompute the dataset.
+        
+Checkpointing can also be utilized in RDDs, so that if the process needs to restart, the streaming 
+application can check for a checkpoint directory and load the previous checkpointed state rather 
+than the normal initialization function. If there is not a checkpointed state, the streaming 
+application can default to running the initialization function.
+
+Spark can also make use of the Write-Ahead logs (not enabled by default) to write all the data 
+received to the write-ahead logs before the data is processed. If the streaming application is 
+restarted, it will read the unprocessed data from the write-ahead logs.
+
+
+5. What are the different options for storage of persistent RDDs?
+
+Three options are provided for the storage of RDDs:
+
+1. In-memory storage as deserialized Java objects.
+2. In-memory storage as serialized data.
+3. On-disk storage.
+
+In-memory storage as deserialized Java objects provides the fastest performance,
+because the Java VM can access each RDD element natively. 
+
+In-memory storage as serialized data lets users choose a more memory-efficient representation 
+than Java object graphs when space is limited, at the cost of lower performance.
+        
+On-disk storage is useful for RDDs that are too large to keep in RAM but costly to recompute 
+on each use.
+
+
+6. What are the differences between narrow and wide dependencies?
+
+RDD dependencies have been classified into two types: narror and wide (or shuffle). By 
+definition, narrow dependencies exist where each partition of the parent RDD is used by at 
+most one partition of the child RDD or if no data transfer between partitions is required. 
+Wide dependencies exist when a shuffle is performed and the partition of the parent RDD may 
+be used by multiple child RDDs.
+
+Narrow dependency ops:  map, filter, union, join (inputs co-partitioned).
+Wide dependency ops:    groupByKey, join (inputs not co-partitioned).
+
+Narrow dependencies allow for pipelined execution on a single cluster node, which can 
+compute all the parent partitions. Wide dependencies require data from all parent
+partitions to be available and to be shuffled across the nodes using a MapReduce
+like operation.
+
+Recovery after a node failure is more efficient with narrow dependencies as only
+the parent partitions need to be processed again. A wide dependency is more complicated,
+as a single failed node may cause the loss of partitions from all ancestors of an RDD,
+which would require a complete re-execution.
+
+
+7. Compare and contrast between RDD and MapReduce?
+
+MapReduce is part of the Hadoop framework and is used for the processing of 
+large datasets within a cluster. The MapReduce algorithm contains mapping and
+reduce steps and an additional shuffle step between the mapping and reducing.
+
+Map works on the input data and converts it into another set of data where individual
+elements are divided into tuples (key/value pairs). Reduce takes the output from the 
+map as an input and combines the tuples into a smaller set of tuples.
+
+Much of the processing time for MapReduce is involved in generating these output datasets 
+that are passed across the workflow: map, shuffle and reduce.
+
+MapReduce is considered harder to program, but has been available for a longer time
+and there are many tools available to make MapReduce development easier.
+
+RDD performs the processing of clustered data in-memory which allows Spark to avoid moving
+intermediate results in and out of disk. Avoiding data replication, I/O operations and 
+serialization gives RDDs a huge speed advantage over MapReduce. Spark is also written in Scala
+and this provides a less verbose programming interface than traditional Java programs.
+
+
+8. Describe a concept or idea that you really like about Spark and it hasn’t been asked from any 
+of the above questions?
+
+Spark has a very well thought out ecosystem covering the Spark Core API, Spark SQL, Streaming, 
+MLlib (Machine Learning), and GraphX (Graph Computation). The Spark Core API generously provides
+support for popular programming languages - R, SQL, Python, Scala, and Java. With all of the thought
+and consideration going into building a robust platform, data miners and scientists have all the tools
+they need for their im-memory, fault tolerant data processing and analytics projects.
+
+I recently found some articles discussing fog computing and the internet of things and how Apache
+Spark may be particularly well-suited for this use case. 
+
+
+Additional References:
+
+[1] Apache Hadoop. https://hadoop.apache.org/
+[2] Apache Spark. http://spark.apache.org/.
+[3] Qubole. https://www.qubole.com/blog/big-data/apache-spark-use-cases/.
+[4] Scala. https://www.scala-lang.org/.
+[5] Wikipedia. https://en.wikipedia.org/wiki/MapReduce
+[6] Douglas Eadline. Hadoop 2 Quick-Start Guide. 2016.
+[7] Ofer Mendelevitch, Casey Stella, Douglas Eadline. Practical Data Science with Hadoop and Spark. 2017.
+[8] Tom White. Hadoop: The Definitive Guide. 2015
+[9] Petar Zecevic, Marko Bonaci. Spark in Action. 2017.
+</pre>
                     
                 </div>
             </div>
